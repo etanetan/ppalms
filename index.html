@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPALMS 0.1</title>
-</head>
-<body>
-    <h1>Home Page</h1>
-    <a href="html/annotations.html">Annotations Page</a>
-    
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PPALMS 0.1</title>
+	</head>
+	<body>
+		<h1>Home Page</h1>
+		<a href="html/annotations.html">Annotations Page</a>
+		<form action="">
+			<div class="container">
+				<label for="uname"><b>Username</b></label>
+				<input
+					type="text"
+					placeholder="Enter Username"
+					name="uname"
+					required
+				/>
+
+				<label for="psw"><b>Password</b></label>
+				<input
+					type="password"
+					placeholder="Enter Password"
+					name="psw"
+					required
+				/>
+				<button
+					id="loginButton"
+					type="submit"
+					onclick="window.location.assign('html/filechooser.html');"
+				>
+					Login
+				</button>
+				<label>
+					<input type="checkbox" checked="checked" name="remember" />
+					Remember me
+				</label>
+			</div>
+
+			<div class="container" style="background-color: #f1f1f1">
+				<button type="button" class="cancelbtn">Cancel</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</body>
 </html>
