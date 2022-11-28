@@ -78,4 +78,3 @@ function cleanEmptyContents(){
 // cleanEmptyContents();
 // console.log(JSON.stringify(myObj));
 
-// module.exports.myObj = myObj; // How to carry over data between pages. Export? 
