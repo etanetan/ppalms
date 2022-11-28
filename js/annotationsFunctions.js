@@ -8,15 +8,15 @@ class Line {
 	relatedLineIDs = [];
 }
 
-let myObj = { problemType: null, exportMethod: null, linesData: [] };
+let myObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 
 function logJSON() {
-	console.log('loaded');
-	// console.log(JSON.stringify(myObj));
+	console.log(JSON.stringify(myObj));
 }
 
 // read file into array, initialize myObj, return array for display on annotation screen
 async function uploadFile() {
+	console.log(myObj);
 	let [FileHandle] = await window.showOpenFilePicker();
 	let fileData = await FileHandle.getFile();
 	let text = await fileData.text();
@@ -27,6 +27,7 @@ async function uploadFile() {
 	let arr2 = arr1.filter((a) => a != '');
 	for (let i = 0; i < arr2.length; i++) {
 		let l = new Line(i, arr2[i]); // create & add a line entry to myObj for each arr entry
+		console.log('loading data');
 		myObj.linesData.push(l);
 	}
 	console.log('Contents\n' + JSON.stringify(myObj));
@@ -59,7 +60,10 @@ function cleanEmptyContents() {
 	tempObj.exportMethod = myObj.exportMethod;
 
 	for (let i = 0; i < len; i++) {
-		if (myObj.linesData[i].contents == '') {
+		if (
+			myObj.linesData[i].contents == '' ||
+			myObj.linesData[i].contents.trim() === 0
+		) {
 			numRemoved++;
 		} else {
 			tempObj.linesData.push(myObj.linesData[i]); // push old object
@@ -74,11 +78,18 @@ function cleanEmptyContents() {
 function save() {
 	// save the library to local storage
 	localStorage.setItem('lines', JSON.stringify(myObj));
+	alert('saved to local storage');
 }
 
-let theObj = localStorage.getItem('lines');
+let theObj = JSON.parse(localStorage.getItem('lines'));
+console.log('retrieved item: ' + theObj);
 if (theObj) {
 	myObj = theObj;
+}
+
+function clearLocalStorage() {
+	console.log('cleared local storage');
+	localStorage.clear();
 }
 
 // parseLines("./example.txt");
