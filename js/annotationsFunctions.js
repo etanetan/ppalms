@@ -3,6 +3,16 @@ var myObj = {"problemType": null, "exportMethod": null, "linesData":[]};
 
 const {readFileSync} = require('fs');
 
+// represents a linesData entry
+class Line {
+  constructor(id, contents) {
+    this.id = id;
+    this.contents = contents;
+  }
+  included = true;
+  relatedLineIDs = [];
+}
+
 // read file into array, initialize myObj, return array for display on annotation screen
 function parseLines(filename) {
   const contents = readFileSync(filename, 'utf-8');  // read all contents of file
@@ -25,12 +35,14 @@ function toggleIncluded(lineID){
     }
 }
 
-// adds to lineNo to lineID's related line array
-function addRelatedLines(lineID, lineNo){ 
-    myObj.linesData[lineID].relatedLineIDs.push(lineNo);
+// Adds two lines to each other's relatedLines arrays
+function addRelatedLines(ID1, ID2){ 
+    myObj.linesData[ID1].relatedLineIDs.push(ID2);
+    myObj.linesData[ID2].relatedLineIDs.push(ID1);
 }
 
 // removes all entries from myObj where contents == "". Sets new lineIDs and clears the relatedLines array.
+// may be a helpful option for users
 function cleanEmptyContents(){
     var tempObj = {"problemType": null, "exportMethod": null, "linesData":[]};
     const len = myObj.linesData.length;
@@ -52,16 +64,6 @@ function cleanEmptyContents(){
         }
     }
     myObj = tempObj;
-}
-
-// represents a linesData entry
-class Line {
-  constructor(id, contents) {
-    this.id = id;
-    this.contents = contents;
-  }
-  included = true;
-  relatedLineIDs = [];
 }
 
 

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html><body>
+<html>
+<script type="text/javascript" src="../js/annotationsFunctions.js"> </script>
+<body>
 <button
 id="backButton"
 type="submit"
@@ -7,9 +9,9 @@ onclick="window.location.assign('./annotations.html');">Back</button>
 
 <h2>JSON Object Output:</h2>
 <p id="myObj"></p>
-<script type="text/javascript" src="../js/annotationsFunctions.js"> </script>
 
-</body>
 <script>
-document.getElementById("myObj").innerHTML = JSON.stringify(myObj);
-</script></body></html>
+document.getElementById("myObj").innerHTML = JSON.stringify(myObj); 
+</script>
+
+</body></html>
