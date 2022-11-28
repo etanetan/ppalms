@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Selection</title>
-    <script type="text/javascript" src="../js/annotationsFunctions.js">    </script>
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>File Selection</title>
+	</head>
 
-<body>   
-    <a href="../index.html"">Back</a>
+	<body>
+		<a href="../index.html">Back</a>
 
-    <h1>File Selection</h1>
-    <form action="annotations.html">
-        <input type="file" id="myFile" name="filename" onclick="uploadFile()">
-        <input type="submit"> 
-        <pre id="fileSpace" contenteditable></pre>
-        <!-- TODO: Fix the above line to properly call upon submission -->
-    </form>
-    
-<script type="text/javascript" src="../js/annotationsFunctions.js"></script>
-</body>
+		<h1>File Selection</h1>
+		<form action="annotations.html">
+			<input
+				type="file"
+				id="myFile"
+				name="filename"
+				onclick="uploadFile()"
+			/>
+			<button type="submit" onclick="save()">Submit</button>
+			<pre id="fileSpace" contenteditable></pre>
+			<!-- TODO: Fix the above line to properly call upon submission -->
+		</form>
+
+		<script
+			type="text/javascript"
+			src="../js/annotationsFunctions.js"
+		></script>
+	</body>
 </html>

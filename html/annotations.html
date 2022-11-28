@@ -5,15 +5,29 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Annotations</title>
-	</head>
-	<body onload="logJSON()">
-		<h1>Annotations Page</h1>
-		<button
-		id="loginButton"
-		type="submit"
-		onclick="window.location.assign('./JSONDisplayer.html');">Continue</button>
 
-<script type="text/javascript" src="../js/annotationsFunctions.js"></script>
+		<script
+			type="text/javascript"
+			src="../js/annotationsFunctions.js"
+		></script>
+	</head>
+	<body onload="logJSON();">
+		<h1>Annotations Page</h1>
+		<h2><label for="cars">Choose a Tool:</label>
+
+            <select name="Parson Problem" id="PPALMS">
+              <option value="1">Group Lines</option>
+              <option value="2">Exclude Lines</option>
+              <option value="3">Highlight</option>
+            </select></h2>
+		<h3><button
+            id="BackButton"
+            type="Back"
+            onclick="window.location.assign('./filechooser.html');">Back</button>
+            <button
+            id="loginButton"
+            type="submit"
+            onclick="window.location.assign('./JSONDisplayer.html');">Continue</button></h3>
 	</body>
 </html>
 

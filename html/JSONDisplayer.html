@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="../js/annotationsFunctions.js"> </script>
-<body>
-<button
-id="backButton"
-type="submit"
-onclick="window.location.assign('./annotations.html');">Back</button>
+	<body onload="logJSON();">
+		<script
+			type="text/javascript"
+			src="../js/annotationsFunctions.js"
+		></script>
+		<button
+			id="backButton"
+			type="submit"
+			onclick="window.location.assign('./annotations.html');save();"
+		>
+			Back
+		</button>
 
-<h2>JSON Object Output:</h2>
-<p id="myObj"></p>
+		<h2>JSON Object Output:</h2>
+		<p id="myObj"></p>
 
-<script>
-document.getElementById("myObj").innerHTML = JSON.stringify(myObj); 
-</script>
-</body></html>
+		<script>
+			document.getElementById('myObj').innerHTML = JSON.stringify(myObj);
+		</script>
+	</body>
+</html>
