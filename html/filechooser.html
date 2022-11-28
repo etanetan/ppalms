@@ -9,13 +9,16 @@
 </head>
 
 <body>   
-    <script src="../js/annotationsFunctions.js"></script>
     <a href="../index.html"">Back</a>
+
     <h1>File Selection</h1>
     <form action="annotations.html">
-        <input type="file" id="myFile" name="filename">
-        <input type="submit" onsubmit=parseLines(myFile.filename)> 
+        <input type="file" id="myFile" name="filename" onclick="uploadFile()">
+        <input type="submit"> 
+        <pre id="fileSpace" contenteditable></pre>
         <!-- TODO: Fix the above line to properly call upon submission -->
     </form>
+    
+<script type="text/javascript" src="../js/annotationsFunctions.js"></script>
 </body>
 </html>

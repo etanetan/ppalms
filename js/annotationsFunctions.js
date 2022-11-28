@@ -1,8 +1,6 @@
 var myObj = {"problemType": null, "exportMethod": null, "linesData":[]};
 
 
-const {readFileSync} = require('fs');
-
 // represents a linesData entry
 class Line {
   constructor(id, contents) {
@@ -13,16 +11,23 @@ class Line {
   relatedLineIDs = [];
 }
 
-// read file into array, initialize myObj, return array for display on annotation screen
-function parseLines(filename) {
-  const contents = readFileSync(filename, 'utf-8');  // read all contents of file
-  const arr = contents.split(/\r?\n/);  // split by newlines
-  for (var i = 0; i < arr.length; i++) { 
-    var l = new Line(i, arr[i]); // create & add a line entry to myObj for each arr entry
-    myObj.linesData.push(l);
-  }
+function logJSON(){
   console.log(JSON.stringify(myObj));
-  return arr;
+}
+
+// read file into array, initialize myObj, return array for display on annotation screen
+async function uploadFile(){
+  let [FileHandle] = await window.showOpenFilePicker();
+  let fileData = await FileHandle.getFile();
+  let text = await fileData.text();
+  fileSpace.innerText = text;
+  const arr1 = text.split(/\r?\n/);
+  let arr2 = arr1.filter(a => a != '');
+  for (var i = 0; i < arr2.length; i++) { 
+      var l = new Line(i, arr2[i]); // create & add a line entry to myObj for each arr entry
+      myObj.linesData.push(l);
+  }
+  console.log("Contents\n" + JSON.stringify(myObj));
 }
 
 // changes included status of lineID
@@ -73,3 +78,4 @@ function cleanEmptyContents(){
 // cleanEmptyContents();
 // console.log(JSON.stringify(myObj));
 
+// module.exports.myObj = myObj; // How to carry over data between pages. Export? 
