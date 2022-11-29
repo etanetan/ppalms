@@ -1,5 +1,7 @@
 # ppalms
 
+<a href="http://etanetan.github.io/ppalms/">Live Demo</a>
+
 TODO:
 
 1) Have fileChooser's submit button PROPERLY call parseLines with the user's filePath
