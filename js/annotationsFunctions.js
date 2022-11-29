@@ -25,12 +25,16 @@ function logJSON() {
 // This function traces back to the file selection design element
 // along with the scenario of a user selecting a file
 async function uploadFile() {
-	console.log(myObj);
+	console.log("Test case: objects before upload");
+	console.log("Object before upload: " + myObj);
+	console.log("CopyObject before upload: " + myObj);
+	
 	let [FileHandle] = await window.showOpenFilePicker();
 	let fileData = await FileHandle.getFile();
 	let text = await fileData.text();
 	let fileSpace = document.getElementById('fileSpace');
 	fileSpace.innerHTML = text;
+	console.log("File contents should now be on webpage");
 	const arr1 = text.split(/\r?\n/);
 	let arr2 = arr1.filter((a) => a != '');
 	for (let i = 0; i < arr2.length; i++) {
@@ -40,6 +44,8 @@ async function uploadFile() {
     // set the copy lines to be the lines at this point, with no annotations
     // so it can later be reset to this exact state if requested by the user
 	copyObj = myObj;
+	console.log("Object after upload: " + myObj);
+	console.log("CopyObject after upload: " + copyObj);
 }
 
 // changes included status of lineID
@@ -53,17 +59,25 @@ function toggleIncluded(lineID) {
 	} else {
 		myObj.linesData[lineID].included = true;
 	}
+	console.log("Test case: toggleIncluded working properly");
+	console.log("Line's Inclusion status: " + myObj.linesData[lineID].included);
+	console.log("For line ID: " + lineID);
 }
 
 // Adds ID2 to the relatedLines array of ID1 and all other arrays included in ID1
 // Then updates ID2's relatedArray 
-function addRelatedLinesV2(ID1, ID2) {
+function addRelatedLines(ID1, ID2) {
+	console.log("Test case: grouping lines together (combining relatedLines arrays for each related line, including ID1 & ID2");
+	console.log("ID1's relatedLines array before adding: " + myObj.linesData[ID1].relatedLines);
+	console.log("ID2's relatedLines array before adding: " + myObj.linesData[ID2].relatedLines);
+
 	let a1 = myObj.linesData[ID1].relatedLines;
 	let a2 = myObj.linesData[ID2].relatedLines;
 	let temp = [...a1, ...a2];  // combined arrays
 	// make every element in array unique:
 	var arr = temp.filter(uniqueElements);
 	let l = arr.length;
+	console.log("Combined array (unique): " + arr);
 
 	for(let i=0;i<l;i++){
 		// current line id
@@ -75,20 +89,24 @@ function addRelatedLinesV2(ID1, ID2) {
 		if(ind != -1){  // if self's ID is in array, remove
 			myObj.linesData[i].relatedLineIDs.splice(ind, ind);
 		}
+		console.log("Line ID: " + cur);
+		console.log("RelatedLinesArray: " +  myObj.linesData[i].relatedLineIDs);
 	}
+	console.log("ID1's relatedLines array after adding: " + myObj.linesData[ID1].relatedLines);
+	console.log("ID2's relatedLines array after adding: " + myObj.linesData[ID2].relatedLines);
 }
 // helper function for addRelatedLines to find duplicate array entries
 function uniqueElements(value, index, self) {
 	return self.indexOf(value) === index;
-  }
+}
 // removes all entries from myObj where contents == "". Sets new lineIDs and clears the relatedLines array.
 // may be a helpful option for users
 // This function traces back to the file annotations design element
 // specifically, removing lines that only contain spaces in them
 function cleanEmptyContents() {
-	let tempObj = { problemType: null, exportMethod: null, linesData: [] };
+	console.log("Test: clear entries from dataLines that only contain tabs/spaces")
+	let tempObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 	const len = myObj.linesData.length;
-	console.log(len);
 	let numRemoved = 0;
 	let numPushed = 0;
 	tempObj.problemType = myObj.problemType;
@@ -123,13 +141,15 @@ function save() {
 	localStorage.setItem('lines', JSON.stringify(myObj));
     // store a copy of the object to local storage
 	localStorage.setItem('copyLines', JSON.stringify(copyObj));
+	// TESTING: console log stored items
+    console.log('Test Case: Saving to Local Storage');
+	console.log('Output: ' + JSON.parse(localStorage.getItem('lines')));
 }
 // parse the json to find the main object lines in local storage
 let theObj = JSON.parse(localStorage.getItem('lines'));
 // parse the json to find the copy object lines in local storage
 let theCopyObj = JSON.parse(localStorage.getItem('copyLines'));
 
-console.log('retrieved item: ' + theObj);
 // if the main object was in local storage, set the main object to 
 // be equal to what was found in storage
 if (theObj) {
@@ -145,6 +165,12 @@ if (theCopyObj) {
 function clearLocalStorage() {
     // clear local storage
 	localStorage.clear();
+    console.log('Test Case: Clearing Local Storage');
+    console.log('Expected output: ');
+    console.log('Actual output: ');
+    for (let i = 0; i < localStorage.length; i++){
+        console.log(JSON.stringify(localStorage.getItem(localStorage.key(i))));
+    }
 }
 // This function traces back to the file annotations design element
 // specifically, adding buttons for each of the lines in the file
