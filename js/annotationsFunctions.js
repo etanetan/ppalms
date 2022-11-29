@@ -53,7 +53,7 @@ function toggleIncluded(lineID) {
 function addRelatedLines(ID1, ID2) {
 	let l = myObj.linesData[ID1].relatedLines.length;
 	for (let i = 0; i < l; i++) {
-		if(myObj.linesData[i].relatedLines.indexOf(ID2) == -1){  // if not already in array, push
+		if(myObj.linesData[i].relatedLineIDs.indexOf(ID2) == -1){  // if not already in array, push
 			myObj.linesData[i].relatedLineIDs.push(ID2);
 		}
 		myObj.linesData[ID2].relatedLineIDs.push(ID2);
@@ -128,8 +128,8 @@ function addAnnotationLines() {
     let displayArea = document.getElementById('displayContents');
 	for (let i = 0; i < myObj.linesData.length; i++) {
 		let b = document.createElement('button');
-		button.setAttribute('id', 'lineButton' + str(i));
-		button.setAttribute('text', myObj.linesData[i].contents);
+		b.setAttribute('id', 'lineButton' + str(i));
+		b.setAttribute('text', myObj.linesData[i].contents);
         displayArea.appendChild(b);
 	}
 }
