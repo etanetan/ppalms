@@ -10,7 +10,7 @@
 			src="../js/annotationsFunctions.js"
 		></script>
 	</head>
-	<body onload="logJSON();">
+	<body onload="logJSON();addAnnotationLines();">
 		<h1>Annotations Page</h1>
 		<h2>
 			<label for="tools">Choose a Tool:</label>
@@ -27,9 +27,9 @@
 				</option>
 			</select>
 		</h2>
-		<h2><button id = "reRender" onclick = "addAnnotationLines()">Rerender Lines</button></h2>
-		<h2><button id = "resetButton" onclick = "resetSelections()">Reset Selections</button></h2>
-		<h2><button id = "cleanButton" onclick = "cleanEmptyContents()">Remove Empty Lines</button></h2>
+		<h2><button id="reRender" onclick="addAnnotationLines()">Rerender Lines</button></h2>
+		<h2><button id="resetButton" onclick="resetSelections()">Reset Selections</button></h2>
+		<h2><button id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2>
 		<h3>
 			<button
 				id="BackButton"
@@ -46,7 +46,7 @@
 				Continue
 			</button>
 		</h3>
-
+		<div id="displayContents"></div>
 	</body>
 </html>
 

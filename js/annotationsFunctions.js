@@ -34,7 +34,7 @@ async function uploadFile() {
 		myObj.linesData.push(l);
 	}
 	console.log('Contents\n' + JSON.stringify(myObj));
-    copyObj = myObj;
+	copyObj = myObj;
 }
 
 // changes included status of lineID
@@ -48,12 +48,17 @@ function toggleIncluded(lineID) {
 	}
 }
 
-// Adds two lines to each other's relatedLines arrays
-// This function traces back to the file annotations design element
-// specifically, selecting which lines do not need to be in any specified order
+// Adds ID2 to the relatedLines array of ID1 and all other arrays included in ID1
+// Then sets ID2's relatedArray to be equal to ID1
 function addRelatedLines(ID1, ID2) {
-	myObj.linesData[ID1].relatedLineIDs.push(ID2);
-	myObj.linesData[ID2].relatedLineIDs.push(ID1);
+	let l = myObj.linesData[ID1].relatedLines.length;
+	for (let i = 0; i < l; i++) {
+		if(myObj.linesData[i].relatedLines.indexOf(ID2) == -1){  // if not already in array, push
+			myObj.linesData[i].relatedLineIDs.push(ID2);
+		}
+		myObj.linesData[ID2].relatedLineIDs.push(ID2);
+	}
+	myObj.linesData[ID2].relatedLineIDs = myObj.linesData[ID1].relatedLineIDs;
 }
 
 // removes all entries from myObj where contents == "". Sets new lineIDs and clears the relatedLines array.
@@ -87,8 +92,8 @@ function cleanEmptyContents() {
 // resets object fields to what they were before annotating
 // This function traces back to the file annotations design element
 // specifically, resetting all annotations to the lines
-function resetSelection(){
-    myObj = copyObj;
+function resetSelection() {
+	myObj = copyObj;
 }
 
 // This function traces back to the data storage design element
@@ -96,7 +101,7 @@ function resetSelection(){
 function save() {
 	// save the library to local storage
 	localStorage.setItem('lines', JSON.stringify(myObj));
-    localStorage.setItem('copyLines', JSON.stringify(copyObj));
+	localStorage.setItem('copyLines', JSON.stringify(copyObj));
 	alert('saved to local storage');
 }
 
@@ -109,7 +114,7 @@ if (theObj) {
 	myObj = theObj;
 }
 if (theCopyObj) {
-    copyObj = theCopyObj;
+	copyObj = theCopyObj;
 }
 // This function traces back to the data storage design element
 // data is cleared locally in this function
@@ -119,18 +124,14 @@ function clearLocalStorage() {
 }
 // This function traces back to the file annotations design element
 // specifically, adding buttons for each of the lines in the file
-function addAnnotationLines(){
-	document.addEventListener("DOMContentLoaded", function(event) { 
-		let l = myObj.linesData.length;
-		let docFrag = document.createDocumentFragment();
-		for(let i = 0; i < l; i++){
-          let button = document.createElement('button');
-		  button.setAttribute('id', "lineButton" + str(i));
-		  button.setAttribute('text', myObj.linesData[i].contents);
-		  docFrag.appendChild(button);
-		}
-		document.getElementById('container').appendChild(docFrag);
-	});
+function addAnnotationLines() {
+    let displayArea = document.getElementById('displayContents');
+	for (let i = 0; i < myObj.linesData.length; i++) {
+		let b = document.createElement('button');
+		button.setAttribute('id', 'lineButton' + str(i));
+		button.setAttribute('text', myObj.linesData[i].contents);
+        displayArea.appendChild(b);
+	}
 }
 
 // parseLines("./example.txt");
