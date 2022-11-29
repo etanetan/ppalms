@@ -145,6 +145,8 @@ function cleanEmptyContents() {
 	}
 	myObj = tempObj;
 	console.log('Object after: \n' + JSON.stringify(myObj));
+    // rerender the buttons to not include the empty spaces
+    addAnnotationLines();
 }
 // resets object fields to what they were before annotating
 // This function traces back to the file annotations design element
@@ -156,6 +158,7 @@ function resetSelections() {
 	console.log('Object before resetting: ' + JSON.stringify(myObj));
 	myObj = copyObj;
 	console.log('Object after resetting: ' + JSON.stringify(myObj));
+    // rerender the buttons
     addAnnotationLines();
 }
 
