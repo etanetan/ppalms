@@ -1,5 +1,9 @@
 #displayContents {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 8px;
+}
+
+.lineButton {
+    border: none;
 }

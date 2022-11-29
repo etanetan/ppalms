@@ -73,7 +73,8 @@ function addRelatedLinesV2(ID1, ID2) {
 	let arr = [...a1, ...a2];  // combined arrays
 	let l = arr.length;
 	for(let i=0;i<l;i++){
-		let ind = myObj.linesData[curID].relatedLineIDs.indexOf(ID2);
+		let curID = arr[i];
+		let ind = 
 		if(ind != -1){
 
 		}
@@ -149,6 +150,7 @@ function addAnnotationLines() {
 	for (let i = 0; i < myObj.linesData.length; i++) {
 		let button = document.createElement('button');
 		button.setAttribute('id', 'lineButton-' + i.toString());
+        button.classList.add('lineButton');
 		button.innerHTML = myObj.linesData[i].contents;
 		displayArea.appendChild(button);
 	}
