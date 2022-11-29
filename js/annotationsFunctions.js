@@ -117,15 +117,16 @@ function clearLocalStorage() {
 	console.log('cleared local storage');
 	localStorage.clear();
 }
-
+// This function traces back to the file annotations design element
+// specifically, adding buttons for each of the lines in the file
 function addAnnotationLines(){
-	let l = myObj.linesData.length;
 	document.addEventListener("DOMContentLoaded", function(event) { 
 		let l = myObj.linesData.length;
 		let docFrag = document.createDocumentFragment();
-		for(let x = 0; x < l; x++){
+		for(let i = 0; i < l; i++){
           let button = document.createElement('button');
-		  button.setAttribute('text', 'yourtext');
+		  button.setAttribute('id', "lineButton" + str(i));
+		  button.setAttribute('text', myObj.linesData[i].contents);
 		  docFrag.appendChild(button);
 		}
 		document.getElementById('container').appendChild(docFrag);
