@@ -122,7 +122,7 @@ function cleanEmptyContents() {
 	console.log(
 		'Test: cleanEmptyContents (removes all linesData elements from myObj with contents that contain only spaces)'
 	);
-	console.log('Object before: ' + JSON.stringify(myObj));
+	console.log('Object before: \n' + JSON.stringify(myObj));
 	let tempObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 	const len = myObj.linesData.length;
 	let numRemoved = 0;
@@ -144,7 +144,7 @@ function cleanEmptyContents() {
 		}
 	}
 	myObj = tempObj;
-	console.log('Object after: ' + JSON.stringify(myObj));
+	console.log('Object after: \n' + JSON.stringify(myObj));
 }
 // resets object fields to what they were before annotating
 // This function traces back to the file annotations design element
@@ -153,8 +153,10 @@ function resetSelections() {
 	console.log(
 		'Test Case: resetSelections (resets object contents to what they were before annotating)'
 	);
+	console.log('Object before resetting: ' + JSON.stringify(myObj));
 	myObj = copyObj;
 	console.log('Object after resetting: ' + JSON.stringify(myObj));
+    addAnnotationLines();
 }
 
 // This function traces back to the data storage design element
@@ -198,8 +200,12 @@ function clearLocalStorage() {
 // This function traces back to the file annotations design element
 // specifically, adding buttons for each of the lines in the file
 function addAnnotationLines() {
+    
 	// grab the area to place the buttons
 	let displayArea = document.getElementById('displayContents');
+    for (let i = 0; i < displayArea.children.length; i++) {
+        displayArea.removeChild(displayArea.children[i]);
+    }
 	// loop through the lines
 	for (let i = 0; i < myObj.linesData.length; i++) {
 		// create a button for each line
