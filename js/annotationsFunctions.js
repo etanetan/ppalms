@@ -49,19 +49,22 @@ function toggleIncluded(lineID) {
 }
 
 // Adds ID2 to the relatedLines array of ID1 and all other arrays included in ID1
-// Then sets ID2's relatedArray to be equal to ID1
+// Then updates ID2's relatedArray 
 function addRelatedLines(ID1, ID2) {
-	let l = myObj.linesData[ID1].relatedLines.length;
+	let l = myObj.linesData[ID1].relatedLines.length; // length of related lines array
 	for (let i = 0; i < l; i++) {
-		if (myObj.linesData[myObj.linesData[ID1].relatedLines].relatedLineIDs.indexOf(ID2) == -1) {
-			// if not already in array, push
-			myObj.linesData[i].relatedLineIDs.push(ID2);
+		let curID = myObj.linesData[ID1].relatedLines[i];
+		// if lineID not already in array, push
+		if (myObj.linesData[curID].relatedLineIDs.indexOf(ID2) == -1) { 
+			myObj.linesData[curID].relatedLineIDs.push(ID2);
 		}
 	}
+	// add ID2 to ID1's array then copy into ID2's array
+	myObj.linesData[ID1].relatedLineIDs.push(ID2);
 	myObj.linesData[ID2].relatedLineIDs = myObj.linesData[ID1].relatedLineIDs;
-	// replace index of current line with line it copied from
-	let x = myObj.linesData[ID2].relatedLines.indexOf(ID2);
-	myObj.linesData[ID2].relatedLines[x] = ID1;
+	// replace ID of ID2 in ID2's array with the ID of ID1
+	let ownIndex = myObj.linesData[ID2].relatedLines.indexOf(ID2);
+	myObj.linesData[ID2].relatedLines[ownIndex] = ID1;
 }
 
 // removes all entries from myObj where contents == "". Sets new lineIDs and clears the relatedLines array.
@@ -131,8 +134,8 @@ function addAnnotationLines() {
 	let displayArea = document.getElementById('displayContents');
 	for (let i = 0; i < myObj.linesData.length; i++) {
 		let button = document.createElement('button');
-		button.setAttribute('id', 'lineButton' + str(i));
-		button.setAttribute('text', myObj.linesData[i].contents);
+		button.setAttribute('id', 'lineButton-' + i.toString());
+		button.innerHTML = myObj.linesData[i].contents;
 		displayArea.appendChild(button);
 	}
 }
