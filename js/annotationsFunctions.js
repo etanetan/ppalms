@@ -73,6 +73,7 @@ function addRelatedLinesV2(ID1, ID2) {
 	let arr = [...a1, ...a2];  // combined arrays
 	let l = arr.length;
 	let lineInd = -1;
+
 	for(let i=0;i<l;i++){
 		let curID = arr[i];
 		// get index into linesData of current line
@@ -83,7 +84,9 @@ function addRelatedLinesV2(ID1, ID2) {
 			}
 		}
 		if(lineInd != -1){
-			
+			if (myObj.linesData[lineInd].relatedLineIDs.indexOf(curID) != -1) { 
+				myObj.linesData[lineInd].splice(arr[i], arr[i]);
+			}
 		}
 	}
 
