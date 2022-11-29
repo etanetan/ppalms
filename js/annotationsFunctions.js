@@ -78,6 +78,7 @@ function cleanEmptyContents() {
 }
 // resets object fields to what they were before annotating
 function resetSelection(){
+    myObj = copyObj;
 }
 
 
