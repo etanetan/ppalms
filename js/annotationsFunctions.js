@@ -67,6 +67,20 @@ function addRelatedLines(ID1, ID2) {
 	myObj.linesData[ID2].relatedLines[ownIndex] = ID1;
 }
 
+function addRelatedLinesV2(ID1, ID2) {
+	let a1 = myObj.linesData[ID1].relatedLines;
+	let a2 = myObj.linesData[ID2].relatedLines;
+	let arr = [...a1, ...a2];  // combined arrays
+	let l = arr.length;
+	for(let i=0;i<l;i++){
+		let ind = myObj.linesData[curID].relatedLineIDs.indexOf(ID2);
+		if(ind != -1){
+
+		}
+	}
+
+}
+
 // removes all entries from myObj where contents == "". Sets new lineIDs and clears the relatedLines array.
 // may be a helpful option for users
 // This function traces back to the file annotations design element
@@ -98,7 +112,7 @@ function cleanEmptyContents() {
 // resets object fields to what they were before annotating
 // This function traces back to the file annotations design element
 // specifically, resetting all annotations to the lines
-function resetSelection() {
+function resetSelections() {
 	myObj = copyObj;
 }
 
