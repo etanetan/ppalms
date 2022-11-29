@@ -72,11 +72,18 @@ function addRelatedLinesV2(ID1, ID2) {
 	let a2 = myObj.linesData[ID2].relatedLines;
 	let arr = [...a1, ...a2];  // combined arrays
 	let l = arr.length;
+	let lineInd = -1;
 	for(let i=0;i<l;i++){
 		let curID = arr[i];
-		let ind = 
-		if(ind != -1){
-
+		// get index into linesData of current line
+		for(let j=0;j<myObj.linesData.length;j++){
+			if(myObj.linesData[j].id == curID){
+				lineInd = j;
+				break;
+			}
+		}
+		if(lineInd != -1){
+			
 		}
 	}
 
