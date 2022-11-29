@@ -72,15 +72,15 @@ function addRelatedLines(ID1, ID2) {
 	);
 	console.log(
 		"ID1's relatedLines array before adding: " +
-			myObj.linesData[ID1].relatedLines
+			myObj.linesData[ID1].relatedLineIDs
 	);
 	console.log(
 		"ID2's relatedLines array before adding: " +
-			myObj.linesData[ID2].relatedLines
+			myObj.linesData[ID2].relatedLineIDs
 	);
 
-	let a1 = myObj.linesData[ID1].relatedLines;
-	let a2 = myObj.linesData[ID2].relatedLines;
+	let a1 = myObj.linesData[ID1].relatedLineIDs;
+	let a2 = myObj.linesData[ID2].relatedLineIDs;
 	let temp = [...a1, ...a2]; // combined arrays
 	// make every element in array unique:
 	var arr = temp.filter(uniqueElements);
@@ -103,11 +103,11 @@ function addRelatedLines(ID1, ID2) {
 	}
 	console.log(
 		"ID1's relatedLines array after adding: " +
-			myObj.linesData[ID1].relatedLines
+			myObj.linesData[ID1].relatedLineIDs
 	);
 	console.log(
 		"ID2's relatedLines array after adding: " +
-			myObj.linesData[ID2].relatedLines
+			myObj.linesData[ID2].relatedLineIDs
 	);
 }
 // helper function for addRelatedLines to find duplicate array entries
@@ -206,8 +206,8 @@ function addAnnotationLines() {
     
 	// grab the area to place the buttons
 	let displayArea = document.getElementById('displayContents');
-    while (displayArea.firstChild) {
-        displayArea.removeChild(displayArea.firstChild);
+    while (displayArea.hasChildNodes()) {
+        displayArea.removeChild(displayArea.lastChild);
     }
 	// loop through the lines
 	for (let i = 0; i < myObj.linesData.length; i++) {
