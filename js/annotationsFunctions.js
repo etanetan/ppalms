@@ -206,8 +206,8 @@ function addAnnotationLines() {
     
 	// grab the area to place the buttons
 	let displayArea = document.getElementById('displayContents');
-    while (displayArea.hasChildNodes()) {
-        displayArea.removeChild(displayArea.lastChild);
+    while (displayArea.firstChild) {
+        displayArea.removeChild(displayArea.firstChild);
     }
 	// loop through the lines
 	for (let i = 0; i < myObj.linesData.length; i++) {
