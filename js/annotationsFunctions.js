@@ -9,6 +9,7 @@ class Line {
 }
 
 let myObj = { "problemType": null, "exportMethod": null, "linesData": [] };
+let copyObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 
 function logJSON() {
 	console.log(JSON.stringify(myObj));
@@ -31,6 +32,7 @@ async function uploadFile() {
 		myObj.linesData.push(l);
 	}
 	console.log('Contents\n' + JSON.stringify(myObj));
+    copyObj = myObj;
 }
 
 // changes included status of lineID
@@ -74,17 +76,28 @@ function cleanEmptyContents() {
 	}
 	myObj = tempObj;
 }
+// resets object fields to what they were before annotating
+function resetSelection(){
+}
+
 
 function save() {
 	// save the library to local storage
 	localStorage.setItem('lines', JSON.stringify(myObj));
+    localStorage.setItem('copyLines', JSON.stringify(copyObj));
 	alert('saved to local storage');
 }
 
 let theObj = JSON.parse(localStorage.getItem('lines'));
+
+let theCopyObj = JSON.parse(localStorage.getItem('copyLines'));
+
 console.log('retrieved item: ' + theObj);
 if (theObj) {
 	myObj = theObj;
+}
+if (theCopyObj) {
+    copyObj = theCopyObj;
 }
 
 function clearLocalStorage() {
