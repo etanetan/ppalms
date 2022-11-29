@@ -17,7 +17,7 @@ let myObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 let copyObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 
 function logJSON() {
-	// log the json
+	// log the json object
 	console.log(JSON.stringify(myObj));
 }
 
@@ -52,6 +52,8 @@ async function uploadFile() {
 // This function traces back to the file annotations design element
 // specifically, toggling which lines should be included in the final output
 function toggleIncluded(lineID) {
+	console.log('Test case: toggleIncluded');
+	console.log("Line's Inclusion status before: " + myObj.linesData[lineID].included);
 	// if line is currently included, do not include it
 	if (myObj.linesData[lineID].included) {
 		myObj.linesData[lineID].included = false;
@@ -59,8 +61,7 @@ function toggleIncluded(lineID) {
 	} else {
 		myObj.linesData[lineID].included = true;
 	}
-	console.log('Test case: toggleIncluded');
-	console.log("Line's Inclusion status: " + myObj.linesData[lineID].included);
+	console.log("Line's Inclusion status after: " + myObj.linesData[lineID].included);
 	console.log('For line ID: ' + lineID);
 }
 
@@ -85,7 +86,7 @@ function addRelatedLines(ID1, ID2) {
 	// make every element in array unique:
 	var arr = temp.filter(uniqueElements);
 	let l = arr.length;
-	console.log('Combined array (unique): ' + arr);
+	console.log("Combined array (unique): " + arr);
 
 	for (let i = 0; i < l; i++) {
 		// current line id
@@ -169,7 +170,7 @@ function save() {
 	localStorage.setItem('lines', JSON.stringify(myObj));
 	// store a copy of the object to local storage
 	localStorage.setItem('copyLines', JSON.stringify(copyObj));
-	// TESTING: console log stored items
+	// console log stored items
 	console.log('Test Case: Saving to Local Storage');
 	console.log('Output: ' + JSON.parse(localStorage.getItem('lines')));
 }
@@ -224,8 +225,3 @@ function addAnnotationLines() {
 	}
 }
 
-// parseLines("./example.txt");
-// toggleIncluded(2);
-// addRelatedLines(2, 6);
-// cleanEmptyContents();
-// console.log(JSON.stringify(myObj));
