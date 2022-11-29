@@ -1,9 +1,7 @@
 #displayContents {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.lineButton {
-    border: none;
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	width: 30%;
+	gap: 8px;
 }
