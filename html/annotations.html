@@ -12,6 +12,22 @@
 		></script>
 	</head>
 	<body onload="logJSON();addAnnotationLines();">
+		<h3>
+			<button
+				id="BackButton"
+				type="Back"
+				onclick="window.location.assign('./filechooser.html');"
+			>
+				Back
+			</button>
+			<button
+				id="loginButton"
+				type="submit"
+				onclick="window.location.assign('./JSONDisplayer.html');"
+			>
+				Continue
+			</button>
+		</h3>
 		<h1>Annotations Page</h1>
 		<h2>
 			<label for="tools">Choose a Tool:</label>
@@ -31,22 +47,6 @@
 		<h2><button id="reRender" onclick="addAnnotationLines()">Rerender Lines</button></h2>
 		<h2><button id="resetButton" onclick="resetSelections()">Reset Selections</button></h2>
 		<h2><button id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2>
-		<h3>
-			<button
-				id="BackButton"
-				type="Back"
-				onclick="window.location.assign('./filechooser.html');"
-			>
-				Back
-			</button>
-			<button
-				id="loginButton"
-				type="submit"
-				onclick="window.location.assign('./JSONDisplayer.html');"
-			>
-				Continue
-			</button>
-		</h3>
 		<div id="displayContents"></div>
 	</body>
 </html>
