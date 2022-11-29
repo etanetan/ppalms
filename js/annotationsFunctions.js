@@ -118,6 +118,20 @@ function clearLocalStorage() {
 	localStorage.clear();
 }
 
+function addAnnotationLines(){
+	let l = myObj.linesData.length;
+	document.addEventListener("DOMContentLoaded", function(event) { 
+		let l = myObj.linesData.length;
+		let docFrag = document.createDocumentFragment();
+		for(let x = 0; x < l; x++){
+          let button = document.createElement('button');
+		  button.setAttribute('text', 'yourtext');
+		  docFrag.appendChild(button);
+		}
+		document.getElementById('container').appendChild(docFrag);
+	});
+}
+
 // parseLines("./example.txt");
 // toggleIncluded(2);
 // addRelatedLines(2, 6);
