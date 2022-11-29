@@ -1,7 +1,7 @@
 # ppalms
 
 <h4>Click on the Live Demo below</h4>
-<p>You will be brought to our login page. From there, you can upload a file, annotate it, then view it as a JSON.</p>
+<p>You will be brought to our login page. From there, you can upload a file, annotate it, then view it as a JSON.\nThe Login page is not function but is our intention to connect a database to store login information for users.</p>
 
 <a href="http://etanetan.github.io/ppalms/">Live Demo</a>
 
