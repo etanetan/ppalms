@@ -104,7 +104,8 @@ function uniqueElements(value, index, self) {
 // This function traces back to the file annotations design element
 // specifically, removing lines that only contain spaces in them
 function cleanEmptyContents() {
-	console.log("Test: clear entries from dataLines that only contain tabs/spaces")
+	console.log("Test: clear entries from dataLines whose contents only contain tabs/spaces");
+	console.log("Object before: " + myObj);
 	let tempObj = { "problemType": null, "exportMethod": null, "linesData": [] };
 	const len = myObj.linesData.length;
 	let numRemoved = 0;
@@ -126,12 +127,15 @@ function cleanEmptyContents() {
 		}
 	}
 	myObj = tempObj;
+	console.log("Object after: " + myObj);
 }
 // resets object fields to what they were before annotating
 // This function traces back to the file annotations design element
 // specifically, resetting all annotations to the lines
 function resetSelections() {
+	console.log("ResetSelections Test: resets object contents to what they were before annotating");
 	myObj = copyObj;
+	console.log("Object after resetting: " + myObj);
 }
 
 // This function traces back to the data storage design element
@@ -199,6 +203,4 @@ function addAnnotationLines() {
 // console.log(JSON.stringify(myObj));
 
 
-
-/* =======================TESTING=========================*/
 
