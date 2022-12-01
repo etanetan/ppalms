@@ -9,6 +9,18 @@ class Line {
 	included = true;
 	// array to hold the lines that it can be grouped with
 	relatedLineIDs = [];
+	setID(newID){
+		id = newID;
+	}
+	setContents(newContents){
+		contents = newContents;
+	}
+	setIncluded(status){
+		included = status;
+	}
+	setRelatedLineIDs(arr){
+		relatedLineIDs = arr;
+	}
 }
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
@@ -29,12 +41,17 @@ async function uploadFile() {
 	console.log('Object before upload: ' + JSON.stringify(myObj));
 	console.log('CopyObject before upload: ' + JSON.stringify(myObj));
 
-	let [FileHandle] = await window.showOpenFilePicker();
-	let fileData = await FileHandle.getFile();
-	let text = await fileData.text();
-	let fileSpace = document.getElementById('fileSpace');
-	fileSpace.innerHTML = text;
+    let [FileHandle] = await window.showOpenFilePicker();
+    let fileData = await FileHandle.getFile();
+    let text = await fileData.text();
+    fileSpace.innerText = text;
+
 	console.log('File contents should now be on webpage');
+	populateObject(text);
+}
+// helper function takes in a string and populates myObj with new Line elements from that string (newline deliminated)
+function populateObject(text){
+	myObj.linesData = [];  // clear linesData of myObj
 	const arr1 = text.split(/\r?\n/);
 	let arr2 = arr1.filter((a) => a != '');
 	for (let i = 0; i < arr2.length; i++) {
@@ -47,68 +64,75 @@ async function uploadFile() {
 	console.log('Object after upload: ' + JSON.stringify(myObj));
 	console.log('CopyObject after upload: ' + JSON.stringify(myObj));
 }
-
-// changes included status of lineID
-// This function traces back to the file annotations design element
-// specifically, toggling which lines should be included in the final output
-function toggleIncluded(lineID) {
-	// if line is currently included, do not include it
-	if (myObj.linesData[lineID].included) {
-		myObj.linesData[lineID].included = false;
-		// if line is currently not included, now include it
-	} else {
-		myObj.linesData[lineID].included = true;
+// function includes all lineIDs in text value string
+function includeLines() {
+	let lineStr = document.getElementById("includeButton").value;
+	let arr = strToIntArr(lineStr);
+	let len = arr.length;
+	let numEntries = myObj.linesData.length;
+	for(var i=0;i<len;i++){
+		let cur = arr[i];
+		if(cur<numEntries){
+			myObj.linesData[cur].setIncluded(true);
+		}
 	}
-	console.log('Test case: toggleIncluded');
-	console.log("Line's Inclusion status: " + myObj.linesData[lineID].included);
-	console.log('For line ID: ' + lineID);
+	console.log(myObj);
 }
+// function excludes all lineIDs in text value string
+function excludeLines() {
+	let lineStr = document.getElementById("includeButton").value;
+	let arr = strToIntArr(lineStr);
+	let len = arr.length;
+	let numEntries = myObj.linesData.length;
+	console.log(numEntries);
+	for(var i=0;i<len;i++){
+		let cur = arr[i];
+		if(cur<numEntries){
+			myObj.linesData[cur].setIncluded(false);
+		}
+	}
+	console.log(myObj);
+}
+// Adds the related lines user has entered into the relatedLines arrays of each respective element
+// TODO: fix fact that arr[i] is undefined at times
+function addRelatedLines() {
+	let lineStr = document.getElementById("relatedLines").value;
+	let arr = strToIntArr(lineStr);
+	let len = arr.length;
+	myObj.linesData[0].relatedLineIDs = arr;
 
-// Adds ID2 to the relatedLines array of ID1 and all other arrays included in ID1
-// Then updates ID2's relatedArray
-function addRelatedLines(ID1, ID2) {
-	console.log(
-		"Test case: addRelatedLines (groups two related lines together, combining & updating the relatedLines arrays of all elements in each other's respective relatedLines arrays)"
-	);
-	console.log(
-		"ID1's relatedLines array before adding: " +
-			myObj.linesData[ID1].relatedLineIDs
-	);
-	console.log(
-		"ID2's relatedLines array before adding: " +
-			myObj.linesData[ID2].relatedLineIDs
-	);
-
-	let a1 = myObj.linesData[ID1].relatedLineIDs;
-	let a2 = myObj.linesData[ID2].relatedLineIDs;
-	let temp = [...a1, ...a2]; // combined arrays
-	// make every element in array unique:
-	var arr = temp.filter(uniqueElements);
-	let l = arr.length;
-	console.log('Combined array (unique): ' + arr);
-
-	for (let i = 0; i < l; i++) {
+	for (let i = 0; i < len; i++) {
 		// current line id
-		cur = arr[i];
-		// set array of current item to the combined array
+		let cur = arr[i];
+		if (cur >= myObj.linesData.length){
+			continue;
+		}
+		// set array of current item to the new array
 		myObj.linesData[cur].relatedLineIDs = arr;
+
 		// remove self's id from array:
 		let ind = myObj.linesData[cur].relatedLineIDs.indexOf(cur);
 		if (ind != -1) {
 			// if self's ID is in array, remove
 			myObj.linesData[i].relatedLineIDs.splice(ind, ind);
 		}
-		console.log('Line ID: ' + cur);
-		console.log('RelatedLinesArray: ' + myObj.linesData[i].relatedLineIDs);
 	}
-	console.log(
-		"ID1's relatedLines array after adding: " +
-			myObj.linesData[ID1].relatedLineIDs
-	);
-	console.log(
-		"ID2's relatedLines array after adding: " +
-			myObj.linesData[ID2].relatedLineIDs
-	);
+	console.log(arr);
+}
+// helper to turn comma seperated text box entries into array of integers
+function strToIntArr(str){
+	// make every element in array unique:
+	let noWhiteSpace = str.replace(/\s+/g, '');
+	let arrV1 = noWhiteSpace.split(",");
+	let arrV2 = arrV1.filter(Number);
+	var arrV3 = arrV2.filter(uniqueElements);
+	var arr = [];
+    let len = arrV3.length;
+
+    for (var i = 0; i < len; i++){
+		arr.push(parseInt(arrV3[i]));
+	}
+	return arr;
 }
 // helper function for addRelatedLines to find duplicate array entries
 function uniqueElements(value, index, self) {
@@ -218,7 +242,7 @@ function addAnnotationLines() {
 		// add a class to style the buttons
 		button.classList.add('lineButton');
 		// set the text to be the same as the line text
-		button.innerHTML = myObj.linesData[i].contents;
+		button.innerHTML = i.toString() + ") " + myObj.linesData[i].contents;
 		// add the button to the correct area on the page
 		displayArea.appendChild(button);
 	}
