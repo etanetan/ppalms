@@ -5,10 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>File Selection</title>
-        <script
-			type="text/javascript"
-			src="../js/annotationsFunctions.js"
-		></script>
 	</head>
 
 	<body>
@@ -21,19 +17,10 @@
 		</button>
 
 		<h1>File Selection</h1>
-        <!-- These two buttons trace back to the user file upload design element -->
-		<form action="annotations.html">
-			<input
-				type="file"
-				id="myFile"
-				name="filename"
-				onclick="uploadFile()"
-			/>
-			<!-- ^accept = "text/*" -->
-			<button type="submit" onclick="save()">Submit</button>
+			<button onclick="uploadFile();"> Upload File</button>
+			<button id="submitButton" onclick="save(), window.location.assign('./annotations.html')"> Submit </button>	
+			<h2>File Contents:</h2>
 			<pre id="fileSpace" contenteditable></pre>
-		</form>
-
-		
+		<script type="text/javascript" src="../js/annotationsFunctions.js"></script>
 	</body>
 </html>
