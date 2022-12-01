@@ -29,24 +29,19 @@
 			</button>
 		</h3>
 		<h1>Annotations Page</h1>
-		<h2>
-			<label for="tools">Choose a Tool:</label>
 
-			<select name="Parson Problem" id="PPALMS">
-				<option
-					value="Include/Exclude Lines"
-					onselect="toggleIncluded()"
-				>
-					Group Lines
-				</option>
-				<option value="Group Lines" onselect="addRelatedLines()">
-					Exclude Lines
-				</option>
-			</select>
-		</h2>
+		<input type="text" id="relatedLines" value="Comma seperated line numbers">
 		<h2><button id="groupLinesButton" onclick="addRelatedLines()">Group Lines</button></h2>
+
+		<input type="text" id="includeLines" value="Comma seperated line numbers">
+		<h2><button id="includeButton" onclick="includeLines()">Include Lines</button></h2>
+
+		<input type="text" id="excludeLines" value="Comma seperated line numbers">
+		<h2><button id="excludeButton" onclick="excludeLines()">Exclude Lines</button></h2>
+
 		<h2><button id="resetButton" onclick="resetSelections()">Reset Selections</button></h2>
 		<h2><button id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2>
+
 		<div id="displayContents"></div>
 	</body>
 </html>
