@@ -8,3 +8,11 @@ The Login page is not functional but is our intention to connect a database to s
 
 <h2>Unit Testing</h2>
 Our testing is done by several console.log statements in JavaScript to test the output against the correct output based on an example file as input (example.py). 
+
+
+JSON Object Data Format:
+myObj = 
+[“exportMethod”:””, “LinesData”: 
+{“ID”:””, “LineContents”:””, “”Included”:bool, “FillInBlank”:[”Contents”:”(NOTE: Should have underscores instead of missing item”,”MissingItem”:””], “MultChoice”:[“Prompt”:””, “A”:””, “B”:””, “C”:””, “D”:””]},
+ … ]
+ 
