@@ -10,18 +10,6 @@ class Line {
 	included = true;
 	// array to hold the lines that it can be grouped with
 	relatedLineIDs = [];
-	setID(newID){
-		id = newID;
-	}
-	setContents(newContents){
-		contents = newContents;
-	}
-	setIncluded(status){
-		included = status;
-	}
-	setRelatedLineIDs(arr){
-		relatedLineIDs = arr;
-	}
 }
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
@@ -44,10 +32,10 @@ async function uploadFile() {
 
     let [FileHandle] = await window.showOpenFilePicker();
     let fileData = await FileHandle.getFile();
-	
+
 	let name = fileData.name;
 	let go = false;
-	let acceptableExtensions = ['.txt','.doc','.docx','.html','.css','.js','.java','.c','.cc','.cpp','.py','.xhtml','.php','.h','.swift','.sh','.vb','.md'];
+	let acceptableExtensions = ['.txt','.doc','.docx','.html','.css','.js','.java','.c','.cc','.cpp','.py','.xhtml','.php','.sql','.h','.swift','.sh','.vb','.md'];
 	// check for unnaceptable extensions
 	for(let i=0;i<acceptableExtensions.length;i++){
 		if(name.includes(acceptableExtensions[i])){
@@ -81,28 +69,29 @@ function populateObject(text){
 }
 // function includes all lineIDs in text value string
 function includeLines() {
-	let lineStr = document.getElementById("includeButton").value;
+	let lineStr = document.getElementById("includeLines").value;
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
 	let numEntries = myObj.linesData.length;
 	for(var i=0;i<len;i++){
 		let cur = arr[i];
-		if(cur<numEntries){
-			myObj.linesData[cur].setIncluded(true);
+		if(cur<numEntries && cur >= 0){
+			myObj.linesData[cur].included = true;
 		}
 	}
 	console.log(myObj);
 }
 // function excludes all lineIDs in text value string
 function excludeLines() {
-	let lineStr = document.getElementById("includeButton").value;
+	let lineStr = document.getElementById("excludeLines").value;
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
 	let numEntries = myObj.linesData.length;
 	for(var i=0;i<len;i++){
 		let cur = arr[i];
-		if(cur<numEntries){
-			myObj.linesData[cur].setIncluded(false);
+		if(cur<numEntries && cur >= 0){
+			console.log("Excluding " + cur);
+			myObj.linesData[cur].included = false;
 		}
 	}
 	console.log(myObj);
@@ -113,12 +102,13 @@ function addRelatedLines() {
 	let lineStr = document.getElementById("relatedLines").value;
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
+	console.log("Related Line IDs: " + myObj.linesData[0].relatedLineIDs);
 	myObj.linesData[0].relatedLineIDs = arr;
 
 	for (let i = 0; i < len; i++) {
 		// current line id
 		let cur = arr[i];
-		if (cur >= myObj.linesData.length){
+		if (cur >= myObj.linesData.length || cur < 0){
 			continue;
 		}
 		// set array of current item to the new array
