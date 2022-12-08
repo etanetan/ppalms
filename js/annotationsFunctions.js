@@ -259,14 +259,14 @@ function addAnnotationLines() {
 
 function generateFillInTheBlank() {
 	// loop through each line and generate a question for each line
-	for (let i=0; i<myObj.linesDate.length; i++) {
+	for (let i=0; i<myObj.linesData.length; i++) {
 		// 
 	}
 }
 
 function generateMultipleChoice() {
 	// loop through each line and generate a question for each line
-	for (let i=0; i<myObj.linesDate.length; i++) {
+	for (let i=0; i<myObj.linesData.length; i++) {
 		// 
 	}
 }
