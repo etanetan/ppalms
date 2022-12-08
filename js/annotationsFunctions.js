@@ -130,7 +130,7 @@ function addRelatedLines() {
 			continue;
 		}
 		// set array of current item to the new array
-		myObj.linesData[cur].relatedLineIDs = arr;
+		myObj.linesData[cur].relatedLineIDs = arr.slice(0);
 
 		// remove self's id from array:
 		let ind = myObj.linesData[cur].relatedLineIDs.indexOf(cur);
