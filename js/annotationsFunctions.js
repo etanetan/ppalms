@@ -10,18 +10,18 @@ class Line {
 	// line is included in output by default
 	included = true;
 	// array to hold the lines that it can be grouped with
-	relatedLineIDs = [];
+	// relatedLineIDs = [];
 
 	fillInTheBlank;
     multChoice;
-}
+};
 // class to store fill in the blank questions
 class fillInTheBlank {
 	constructor(contents, missingItem) {
 		this.contents = contents;
 		this.missingItem = missingItem;
 	}
-}
+};
 // class to store multiple choice questions
 class multChoice {
 	constructor(prompt, a, b, c, d) {
@@ -31,7 +31,7 @@ class multChoice {
 		this.c = c;
 		this.d = d;
 	}
-}
+};
 
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
@@ -124,8 +124,6 @@ function addRelatedLines() {
 	let lineStr = document.getElementById("relatedLines").value;
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
-	console.log("Related Line IDs: " + myObj.linesData[0].relatedLineIDs);
-	myObj.linesData[0].relatedLineIDs = arr;
 
 	for (let i = 0; i < len; i++) {
 		// current line id
