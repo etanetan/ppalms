@@ -10,19 +10,27 @@ class Line {
 	included = true;
 	// array to hold the lines that it can be grouped with
 	relatedLineIDs = [];
-	setID(newID){
-		id = newID;
-	}
-	setContents(newContents){
-		contents = newContents;
-	}
-	setIncluded(status){
-		included = status;
-	}
-	setRelatedLineIDs(arr){
-		relatedLineIDs = arr;
+	fillInTheBlank;
+    multChoice;
+}
+// class to store fill in the blank questions
+class fillInTheBlank {
+	constructor(contents, missingItem) {
+		this.contents = contents;
+		this.missingItem = missingItem;
 	}
 }
+// class to store multiple choice questions
+class multChoice {
+	constructor(prompt, a, b, c, d) {
+		this.prompt = prompt;
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.d = d;
+	}
+}
+
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
 let myObj = {"exportMethod": null, "linesData": [] };
@@ -81,7 +89,7 @@ function populateObject(text){
 }
 // function includes all lineIDs in text value string
 function includeLines() {
-	let lineStr = document.getElementById("includeButton").value;
+	let lineStr = document.getElementById("includeLines").value;
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
 	let numEntries = myObj.linesData.length;
@@ -95,7 +103,7 @@ function includeLines() {
 }
 // function excludes all lineIDs in text value string
 function excludeLines() {
-	let lineStr = document.getElementById("includeButton").value;
+	let lineStr = document.getElementById("excludeLines").value;
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
 	let numEntries = myObj.linesData.length;
@@ -170,7 +178,7 @@ function cleanEmptyContents() {
 	for (let i = 0; i < len; i++) {
 		if (
 			myObj.linesData[i].contents == '' ||
-			myObj.linesData[i].contents.trim() === 0
+			myObj.linesData[i].contents.trim().length == 0
 		) {
 			numRemoved++;
 		} else {
