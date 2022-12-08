@@ -44,9 +44,23 @@ async function uploadFile() {
 
     let [FileHandle] = await window.showOpenFilePicker();
     let fileData = await FileHandle.getFile();
+	
+	let name = fileData.name;
+	let go = false;
+	let acceptableExtensions = ['.txt','.doc','.docx','.html','.css','.js','.java','.c','.cc','.cpp','.py','.xhtml','.php','.h','.swift','.sh','.vb','.md'];
+	// check for unnaceptable extensions
+	for(let i=0;i<acceptableExtensions.length;i++){
+		if(name.includes(acceptableExtensions[i])){
+			go = true;
+		}
+	}
+	if(name.includes(".") && (!go)) {
+		alert("Unnaceptable file extension selected");
+		return;
+	}
+
     let text = await fileData.text();
     fileSpace.innerText = text;
-
 	console.log('File contents should now be on webpage');
 	populateObject(text);
 }
