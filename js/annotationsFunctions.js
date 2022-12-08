@@ -10,7 +10,28 @@ class Line {
 	included = true;
 	// array to hold the lines that it can be grouped with
 	relatedLineIDs = [];
+
+	fillInTheBlank;
+    multChoice;
 }
+// class to store fill in the blank questions
+class fillInTheBlank {
+	constructor(contents, missingItem) {
+		this.contents = contents;
+		this.missingItem = missingItem;
+	}
+}
+// class to store multiple choice questions
+class multChoice {
+	constructor(prompt, a, b, c, d) {
+		this.prompt = prompt;
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.d = d;
+	}
+}
+
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
 let myObj = {"exportMethod": null, "linesData": [] };
@@ -112,7 +133,7 @@ function addRelatedLines() {
 			continue;
 		}
 		// set array of current item to the new array
-		myObj.linesData[cur].relatedLineIDs = arr;
+		myObj.linesData[cur].relatedLineIDs = arr.slice(0);
 
 		// remove self's id from array:
 		let ind = myObj.linesData[cur].relatedLineIDs.indexOf(cur);
@@ -160,7 +181,7 @@ function cleanEmptyContents() {
 	for (let i = 0; i < len; i++) {
 		if (
 			myObj.linesData[i].contents == '' ||
-			myObj.linesData[i].contents.trim() === 0
+			myObj.linesData[i].contents.trim().length == 0
 		) {
 			numRemoved++;
 		} else {
