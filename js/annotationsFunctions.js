@@ -1,4 +1,5 @@
 // represents a linesData entry
+// TODO: update line to fit new JSON format
 class Line {
 	// constructor to set id and contents for line
 	constructor(id, contents) {
@@ -24,9 +25,9 @@ class Line {
 }
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
-let myObj = { "problemType": null, "exportMethod": null, "linesData": [] };
+let myObj = {"exportMethod": null, "linesData": [] };
 // copy object used for resetting the annotations on the lines
-let copyObj = { "problemType": null, "exportMethod": null, "linesData": [] };
+let copyObj = {"exportMethod": null, "linesData": [] };
 
 function logJSON() {
 	// log the json
@@ -146,11 +147,10 @@ function cleanEmptyContents() {
 		'Test: cleanEmptyContents (removes all linesData elements from myObj with contents that contain only spaces)'
 	);
 	console.log('Object before: \n' + JSON.stringify(myObj));
-	let tempObj = { "problemType": null, "exportMethod": null, "linesData": [] };
+	let tempObj = {"exportMethod": null, "linesData": [] };
 	const len = myObj.linesData.length;
 	let numRemoved = 0;
 	let numPushed = 0;
-	tempObj.problemType = myObj.problemType;
 	tempObj.exportMethod = myObj.exportMethod;
 
 	for (let i = 0; i < len; i++) {
@@ -265,4 +265,10 @@ function generateMultipleChoice() {
 	for (let i=0; i<myObj.linesDate.length; i++) {
 		// 
 	}
+}
+
+// TODO: fix. Changes successfully, but changes aren't carried over to JSONDisplayer for some reason
+function setExportMethod(){
+	myObj.exportMethod = document.getElementById("export").value;
+	console.log("Export method: " + myObj.exportMethod);
 }

@@ -18,12 +18,36 @@
 			Generate Multiple Choice Questions
 		</button>
 
+		<label for="export">Select an LMS export destination:</label>
+		<select name="export" id="export" onchange="setExportMethod()">
+			<option value=""></option>
+			<option value="Canvas">Canvas</option>
+			<option value="Moodle">Moodle</option>
+			<option value="Blackboard">Blackboard</option>
+		</select>
+		<br>
 		<button
-			id="loginButton"
+			id="toJSONButton"
 			type="submit"
-			onclick="window.location.assign('./JSONDisplayer.html');"
+			onclick="window.location.assign('./JSONDisplayer.html');" 
 		>
 			Continue
 		</button>
+		<script >
+		//  disable continue button until user selects a valid export destination
+		let exportSelection = document.getElementById("export");
+		let continueButton = document.getElementById("toJSONButton");
+		continueButton.disabled = true; //setting button state to disabled
+		exportSelection.addEventListener("change", enableContinue);
+		console.log("Disabled continue")
+		function enableContinue() {
+			if (document.getElementById("export").value === "") {
+				continueButton.disabled = true; //button remains disabled
+				console.log("Continue still disabled")
+			} else {
+				continueButton.disabled = false; //button is enabled
+			}
+		}
+		</script>
 	</body>
 </html>
