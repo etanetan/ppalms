@@ -5,11 +5,12 @@ class Line {
 	constructor(id, contents) {
 		this.id = id;
 		this.contents = contents;
+		this.relatedLineIDs = [];
 	}
 	// line is included in output by default
 	included = true;
 	// array to hold the lines that it can be grouped with
-	relatedLineIDs = [];
+	//relatedLineIDs = [];
 	fillInTheBlank;
     multChoice;
 }
