@@ -252,3 +252,17 @@ function addAnnotationLines() {
 // addRelatedLines(2, 6);
 // cleanEmptyContents();
 // console.log(JSON.stringify(myObj));
+
+function generateFillInTheBlank() {
+	// loop through each line and generate a question for each line
+	for (let i=0; i<myObj.linesDate.length; i++) {
+		// 
+	}
+}
+
+function generateMultipleChoice() {
+	// loop through each line and generate a question for each line
+	for (let i=0; i<myObj.linesDate.length; i++) {
+		// 
+	}
+}
