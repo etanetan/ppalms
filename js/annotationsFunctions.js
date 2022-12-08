@@ -84,7 +84,6 @@ function excludeLines() {
 	let arr = strToIntArr(lineStr);
 	let len = arr.length;
 	let numEntries = myObj.linesData.length;
-	console.log(numEntries);
 	for(var i=0;i<len;i++){
 		let cur = arr[i];
 		if(cur<numEntries){
