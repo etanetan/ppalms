@@ -9,8 +9,6 @@ class Line {
 	}
 	// line is included in output by default
 	included = true;
-	// array to hold the lines that it can be grouped with
-	// relatedLineIDs = [];
 
 	fillInTheBlank;
     multChoice;
@@ -71,6 +69,8 @@ async function uploadFile() {
 
     let text = await fileData.text();
     fileSpace.innerText = text;
+	let submitButton = document.getElementById("submitButton");
+	submitButton.disabled = false; //setting button state to disabled
 	console.log('File contents should now be on webpage');
 	populateObject(text);
 }
@@ -198,7 +198,7 @@ function cleanEmptyContents() {
 // resets object fields to what they were before annotating
 // This function traces back to the file annotations design element
 // specifically, resetting all annotations to the lines
-function resetSelections() {
+function resetSelections(addAnnotations) {
 	console.log(
 		'Test Case: resetSelections (resets object contents to what they were before annotating)'
 	);
@@ -206,7 +206,9 @@ function resetSelections() {
 	myObj = copyObj;
 	console.log('Object after resetting: ' + JSON.stringify(myObj));
     // rerender the buttons
-    addAnnotationLines();
+	if(addAnnotations){
+    	addAnnotationLines();
+	}
 }
 
 // This function traces back to the data storage design element
@@ -250,7 +252,6 @@ function clearLocalStorage() {
 // This function traces back to the file annotations design element
 // specifically, adding buttons for each of the lines in the file
 function addAnnotationLines() {
-    
 	// grab the area to place the buttons
 	let displayArea = document.getElementById('displayContents');
     while (displayArea.firstChild) {
@@ -270,7 +271,33 @@ function addAnnotationLines() {
 		displayArea.appendChild(button);
 	}
 }
-
+function removeComments(){
+	let tempObj = {"exportMethod": null, "linesData": [] };
+	const len = myObj.linesData.length;
+	let numRemoved = 0;
+	let numPushed = 0;
+	tempObj.exportMethod = myObj.exportMethod;
+	let input = document.getElementById("fname").value;
+	console.log("Input: " + input.length);
+	// remove lines
+	for(let i=0;i<len;i++){
+		let trimmedLine = myObj.linesData[i].contents.trim();
+		if(trimmedLine.substring(0, input.length) == input){
+			console.log("Removed a line");
+			numRemoved++;
+		}
+		else{
+			tempObj.linesData.push(myObj.linesData[i]); // push old object
+			tempObj.linesData[numPushed].relatedLineIDs = []; // clear relatedLineIDs
+			tempObj.linesData[numPushed].id -= numRemoved; // reset lineID
+			numPushed++;
+		}
+	}
+	myObj = tempObj;
+	console.log('Object after: \n' + JSON.stringify(myObj));
+    // rerender the buttons to not include the removed lines
+    addAnnotationLines();
+}
 // parseLines("./example.txt");
 // toggleIncluded(2);
 // addRelatedLines(2, 6);
@@ -291,7 +318,6 @@ function generateMultipleChoice() {
 	}
 }
 
-// TODO: fix. Changes successfully, but changes aren't carried over to JSONDisplayer for some reason
 function setExportMethod(){
 	myObj.exportMethod = document.getElementById("export").value;
 	console.log("Export method: " + myObj.exportMethod);

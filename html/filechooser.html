@@ -22,5 +22,10 @@
 			<h2>File Contents:</h2>
 			<pre id="fileSpace" contenteditable></pre>
 		<script type="text/javascript" src="../js/annotationsFunctions.js"></script>
+		<script >
+			//  disable submit button until user selects a valid file
+			let submitButton = document.getElementById("submitButton");
+			submitButton.disabled = true; //setting button state to disabled
+		</script>
 	</body>
 </html>

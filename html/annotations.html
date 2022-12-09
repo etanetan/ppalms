@@ -30,17 +30,20 @@
 		</h3>
 		<h1>Annotations Page</h1>
 
-		<input type="text" id="relatedLines" value="Comma seperated line numbers">
+		<input type="text" id="relatedLines" placeholder="i.e. 0, 4, 6, 7">
 		<h2><button id="groupLinesButton" onclick="addRelatedLines()">Group Lines</button></h2>
 
-		<input type="text" id="includeLines" value="Comma seperated line numbers">
+		<input type="text" id="includeLines" placeholder="i.e. 0, 4, 6, 7">
 		<h2><button id="includeButton" onclick="includeLines()">Include Lines</button></h2>
 
-		<input type="text" id="excludeLines" value="Comma seperated line numbers">
+		<input type="text" id="excludeLines" placeholder="i.e. 0, 4, 6, 7">
 		<h2><button id="excludeButton" onclick="excludeLines()">Exclude Lines</button></h2>
 
-		<h2><button id="resetButton" onclick="resetSelections()">Reset Selections</button></h2>
+		<label for="fname">Remove commented lines:</label>
+		<input type="text" id="fname" name="fname" placeholder="comment char/value">
+		<button id="removeCommentsButton" onclick="removeComments()">GO</button><br>
 		<h2><button id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2>
+		<h2><button id="resetButton" onclick="resetSelections(true)">Reset Selections</button></h2>
 
 		<div id="displayContents"></div>
 	</body>
