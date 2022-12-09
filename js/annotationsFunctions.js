@@ -318,6 +318,13 @@ function generateMultipleChoice() {
 	}
 }
 
+function generateTrueOrFalse() {
+	// loop through each line and generate a question for each line
+	for (let i=0; i<myObj.linesData.length; i++) {
+		// 
+	}
+}
+
 function setExportMethod(){
 	myObj.exportMethod = document.getElementById("export").value;
 	console.log("Export method: " + myObj.exportMethod);
