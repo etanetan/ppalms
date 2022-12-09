@@ -11,7 +11,7 @@
 		></script>
 	</head>
 	<body>
-		<button onclick="generateFillInTheBlank();">
+		<!-- <button onclick="generateFillInTheBlank();">
 			Generate Fill In The Blank Questions
 		</button>
 		<button onclick="generateMultipleChoice();">
@@ -19,7 +19,14 @@
 		</button>
 		<button onclick="generateTrueOrFalse();">
 			Generate True or False Choice Questions
-		</button>
+		</button> -->
+		<!--  Checkbox approach: -->
+		<input type="checkbox" id="blankQuestions" name="blankQuestions" value="Bike">
+		<label for="vehicle1">Generate Fill In The Blank Questions</label>
+		<input type="checkbox" id="multChoiceQuestions" name="multChoiceQuestions" value="Car">
+		<label for="vehicle2">Generate Multiple Choice Questions</label>
+		<input type="checkbox" id="TFQuestions" name="TFQuestions" value="Boat">
+		<label for="vehicle3">Generate True or False Choice Questions</label><br><br>
 
 		<label for="export">Select an LMS export destination:</label>
 		<select name="export" id="export" onchange="setExportMethod()">
@@ -28,14 +35,17 @@
 			<option value="Moodle">Moodle</option>
 			<option value="Blackboard">Blackboard</option>
 		</select>
-		<br>
+		<br><br>
 		<button id="BackButton" type="Back" onclick="resetSelections(false), save(), window.location.assign('./annotations.html');">
 		Back
 		</button>
+		<!-- TODO: add to each function being called:
+			if(!(document.getElementById("blankQuestions").checked) ){return;} 
+		so respective functions not executing if user did not check them-->
 		<button
 			id="toJSONButton"
 			type="submit"
-			onclick="save();window.location.assign('./JSONDisplayer.html');" 
+			onclick="generateFillInTheBlank();generateMultipleChoice();generateTrueOrFalse();save();window.location.assign('./JSONDisplayer.html');" 
 		>
 			Continue
 		</button>
