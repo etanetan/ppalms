@@ -10,10 +10,13 @@
 			type="text/javascript"
 			src="../js/annotationsFunctions.js"
 		></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	</head>
+
 	<body onload="logJSON();addAnnotationLines();">
 		<h3>
 			<button
+				class="btn btn-secondary btn-lg"
 				id="BackButton"
 				type="Back"
 				onclick="window.location.assign('./filechooser.html');"
@@ -21,6 +24,7 @@
 				Back
 			</button>
 			<button
+				class="btn btn-secondary btn-lg"
 				id="loginButton"
 				type="submit"
 				onclick="save();window.location.assign('./generateProblems.html');"
@@ -29,22 +33,22 @@
 			</button>
 		</h3>
 		<h1>Annotations Page</h1>
-
 		<input type="text" id="relatedLines" placeholder="i.e. 0, 4, 6, 7">
-		<h2><button id="groupLinesButton" onclick="addRelatedLines()">Group Lines</button></h2>
+		<h2><button class="btn btn-primary btn-lg" id="groupLinesButton" onclick="addRelatedLines()">Group Lines</button></h2><br>
 
 		<input type="text" id="includeLines" placeholder="i.e. 0, 4, 6, 7">
-		<h2><button id="includeButton" onclick="includeLines()">Include Lines</button></h2>
+		<h2><button class="btn btn-primary btn-lg" id="includeButton" onclick="includeLines()">Include Lines</button></h2><br>
 
 		<input type="text" id="excludeLines" placeholder="i.e. 0, 4, 6, 7">
-		<h2><button id="excludeButton" onclick="excludeLines()">Exclude Lines</button></h2>
+		<h2><button class="btn btn-primary btn-lg" id="excludeButton" onclick="excludeLines()">Exclude Lines</button></h2>
 
 		<label for="fname">Remove commented lines:</label>
 		<input type="text" id="fname" name="fname" placeholder="comment char/value">
-		<button id="removeCommentsButton" onclick="removeComments()">GO</button><br>
-		<h2><button id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2>
-		<h2><button id="resetButton" onclick="resetSelections(true)">Reset Selections</button></h2>
+		<button class="btn btn-secondary btn-lg" id="removeCommentsButton" onclick="removeComments()">GO</button><br><br>
+		<h2><button class="btn btn-primary btn-lg" id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2><br>
+		<h2><button class="btn btn-primary btn-lg" id="resetButton" onclick="resetSelections(true)">Reset Selections</button></h2>
 
 		<div id="displayContents"></div>
+
 	</body>
 </html>

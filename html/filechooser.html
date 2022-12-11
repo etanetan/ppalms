@@ -5,10 +5,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>File Selection</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 	</head>
 
 	<body>
 		<button
+			class="btn btn-secondary btn-lg"
 			id="BackButton"
 			type="Back"
 			onclick="window.location.assign('../index.html');"
@@ -17,8 +20,9 @@
 		</button>
 
 		<h1>File Selection</h1>
-			<button onclick="uploadFile();"> Upload File</button>
-			<button id="submitButton" onclick="save();window.location.assign('./annotations.html');"> Submit </button>	
+		<br>
+			<button class="btn btn-secondary btn-lg" onclick="uploadFile();"> Upload File</button>
+			<button class="btn btn-secondary btn-lg" id="submitButton" onclick="save();window.location.assign('./annotations.html');"> Submit </button>	<br><br>
 			<h2>File Contents:</h2>
 			<pre id="fileSpace" contenteditable></pre>
 		<script type="text/javascript" src="../js/annotationsFunctions.js"></script>

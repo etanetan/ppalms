@@ -9,6 +9,8 @@
 			type="text/javascript"
 			src="./js/annotationsFunctions.js"
 		></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		
 	</head>
 	<body onload="clearLocalStorage();">
 		<h1>Home Page</h1>
@@ -30,6 +32,7 @@
 					required
 				/>
 				<button
+					class="btn btn-secondary btn-lg"
 					id="loginButton"
 					type="submit"
 					onclick="window.location.assign('html/filechooser.html');"
@@ -43,7 +46,7 @@
 			</div>
 
 			<div class="container" style="background-color: #f1f1f1">
-				<button type="button" class="cancelbtn">Cancel</button>
+				<button type="button" class="btn btn-secondary btn-md">Cancel</button>
 				<span class="psw">Forgot <a href="#">password?</a></span>
 			</div>
 		</form>
