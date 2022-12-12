@@ -329,4 +329,52 @@ function setExportMethod(){
 	myObj.exportMethod = document.getElementById("export").value;
 	console.log("Export method: " + myObj.exportMethod);
 }
+// class Question {
+//     constructor(id, type, question, options, answer) {
+//         this.id = id;
+//         this.type = type; 
+//         this.question = question;
+//         this.options = options; 
+//         this.answer = answer;
+//     }
+//   }
+
+// let arr = [];
+// let answer = [];
+// let questionBank = [];
+
+// function generateFillInTheBlank() {
+//     // loop through each line and generate a question for each line
+//     for (let i=0; i<myObj.linesDate.length; i++) {
+//         words = myObj[i].linesData[innerWidth].split(" ");
+//         const randomIndex = Math.floor(Math.random() * words.length);
+//         words[randomIndex] = "_______";
+//         const modifiedLine = words.join(" ");
+//         arr.push(modifiedLine);
+//         answer.push(words[randomIndex]);
+//     }
+//     return arr;
+// }
+
+// function generateTrueOrFalse() {
+//     let newArr = generateFillInTheBlank();
+//     for (let i=0; i<newArr.length; i++) {
+//         let questionAddition = "True or False:" + newArr[i] + "=" + answer[i];
+//         let currQuestion = new Question(i, questionAddition, newArr[i], ["True", "False", "IDK"], answer[i]);
+//         questionBank.push(currQuestion);
+
+//     }
+// }
+// function generateMultipleChoice() {
+//     let newArr = generateFillInTheBlank();
+//     for (let i=0; i<newArr.length; i++) {
+//         answer = answer[i];
+//         option1 = answer[Math.floor(Math.random() * answer.length)];
+//         option2 = answer[Math.floor(Math.random() * answer.length)];
+//         option3 = answer[Math.floor(Math.random() * answer.length)];
+//         let questionAddition = "Choose the correct answer:" + newArr[i];
+//         let currQuestion = new Question(i, questionAddition, newArr[i], [answer, option1, option2, option3], answer);
+//         questionBank.push(currQuestion);
+//     }
+// }
 
