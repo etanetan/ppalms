@@ -50,3 +50,29 @@
 #toJSONButton.btn-secondary {
 	background-color: rgb(45, 166, 43);
 }
+
+
+#displayContents {
+	flex:1;
+	width: 50%;
+	float: left;
+	height: 100%;
+	z-index: 1010101010;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	width: 30%;
+	gap: 8px;
+  }
+  
+  #toolContents{
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	flex:1;
+	/* position: relative; */
+	width: 50%;
+	float: right;
+	height: 100%;
+	z-index: 1010101010
+  }
