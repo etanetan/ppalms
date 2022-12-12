@@ -33,3 +33,20 @@
 	transform: translate(-50%, -50%);
 	text-align: center;
   }
+
+/* Using an ID selector */
+#backButton.btn-secondary {
+	background-color: rgb(203, 68, 68);
+}
+#loginButton.btn-secondary {
+	background-color: green;
+}
+#submitButton.btn-secondary {
+	background-color: green;
+}
+#removeCommentsButton.btn-secondary {
+	background-color: rgb(45, 166, 43);
+}
+#toJSONButton.btn-secondary {
+	background-color: rgb(45, 166, 43);
+}
