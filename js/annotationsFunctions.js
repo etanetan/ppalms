@@ -329,3 +329,4 @@ function setExportMethod(){
 	myObj.exportMethod = document.getElementById("export").value;
 	console.log("Export method: " + myObj.exportMethod);
 }
+
