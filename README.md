@@ -13,6 +13,7 @@ Our testing is done by several console.log statements in JavaScript to test the 
 JSON Object Data Format:
 myObj = 
 [“exportMethod”:””, “LinesData”: 
-{“ID”:””, “LineContents”:””, “”Included”:bool, “FillInBlank”:[”Contents”:”(NOTE: Should have underscores instead of missing item”,”MissingItem”:””], “MultChoice”:[“Prompt”:””, “A”:””, “B”:””, “C”:””, “D”:””]},
+{“ID”:””, “LineContents”:””, “”Included”:bool},...
+"questionBank":{},...
  … ]
  
