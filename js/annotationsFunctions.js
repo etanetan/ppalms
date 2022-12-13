@@ -32,14 +32,15 @@ let questionBank = [];
 
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
-let myObj = {"exportMethod": null, "linesData": [], "questionBank":[]};
+ques = JSON.stringify(questionBank, null, 4);
+let myObj = {"exportMethod": null, "linesData": [], ques:[]};
 
 // copy object used for resetting the annotations on the lines
-let copyObj = {"exportMethod": null, "linesData": [], "questionBank":[]};
+let copyObj = {"exportMethod": null, "linesData": [], ques:[]};
 
 function logJSON() {
 	// log the json
-	console.log(JSON.stringify(myObj));
+	console.log(JSON.stringify(myObj, null, 4));
 }
 
 // read file into array, initialize myObj, return array for display on annotation screen
@@ -47,8 +48,8 @@ function logJSON() {
 // along with the scenario of a user selecting a file
 async function uploadFile() {
 	console.log('Test case: uploadFile');
-	console.log('Object before upload: ' + JSON.stringify(myObj));
-	console.log('CopyObject before upload: ' + JSON.stringify(myObj));
+	console.log('Object before upload: ' + JSON.stringify(myObj, null, 4));
+	console.log('CopyObject before upload: ' + JSON.stringify(myObj, null, 4));
 
     let [FileHandle] = await window.showOpenFilePicker();
     let fileData = await FileHandle.getFile();
@@ -86,8 +87,8 @@ function populateObject(text){
 	// set the copy lines to be the lines at this point, with no annotations
 	// so it can later be reset to this exact state if requested by the user
 	copyObj = myObj;
-	console.log('Object after upload: ' + JSON.stringify(myObj));
-	console.log('CopyObject after upload: ' + JSON.stringify(myObj));
+	console.log('Object after upload: ' + JSON.stringify(myObj, null, 4));
+	console.log('CopyObject after upload: ' + JSON.stringify(myObj, null, 4));
 }
 // function includes all lineIDs in text value string
 function includeLines() {
@@ -170,7 +171,7 @@ function cleanEmptyContents() {
 	console.log(
 		'Test: cleanEmptyContents (removes all linesData elements from myObj with contents that contain only spaces)'
 	);
-	console.log('Object before: \n' + JSON.stringify(myObj));
+	console.log('Object before: \n' + JSON.stringify(myObj, null, 4));
 	let tempObj = {"exportMethod": null, "linesData": [] };
 	const len = myObj.linesData.length;
 	let numRemoved = 0;
@@ -191,7 +192,7 @@ function cleanEmptyContents() {
 		}
 	}
 	myObj = tempObj;
-	console.log('Object after: \n' + JSON.stringify(myObj));
+	console.log('Object after: \n' + JSON.stringify(myObj, null, 4));
     // rerender the buttons to not include the empty spaces
     addAnnotationLines();
 }
@@ -202,9 +203,9 @@ function resetSelections(addAnnotations) {
 	console.log(
 		'Test Case: resetSelections (resets object contents to what they were before annotating)'
 	);
-	console.log('Object before resetting: ' + JSON.stringify(myObj));
+	console.log('Object before resetting: ' + JSON.stringify(myObj, null, 4));
 	myObj = copyObj;
-	console.log('Object after resetting: ' + JSON.stringify(myObj));
+	console.log('Object after resetting: ' + JSON.stringify(myObj, null, 4));
     // rerender the buttons
 	if(addAnnotations){
     	addAnnotationLines();
@@ -215,9 +216,9 @@ function resetSelections(addAnnotations) {
 // data is stored locally
 function save() {
 	// store the main object lines to local storage
-	localStorage.setItem('lines', JSON.stringify(myObj));
+	localStorage.setItem('lines', JSON.stringify(myObj, null, 4));
 	// store a copy of the object to local storage
-	localStorage.setItem('copyLines', JSON.stringify(copyObj));
+	localStorage.setItem('copyLines', JSON.stringify(myObj, null, 4));
 	// TESTING: console log stored items
 	console.log('Test Case: Saving to Local Storage');
 	console.log('Output: ' + JSON.parse(localStorage.getItem('lines')));
@@ -294,7 +295,7 @@ function removeComments(){
 		}
 	}
 	myObj = tempObj;
-	console.log('Object after: \n' + JSON.stringify(myObj));
+	console.log('Object after: \n' + JSON.stringify(myObj, null, 4));
     // rerender the buttons to not include the removed lines
     addAnnotationLines();
 }
@@ -312,7 +313,7 @@ function generateFillInTheBlank() {
 			const randomIndex = Math.floor(Math.random() * words.length);
 			let temp = words[randomIndex]
 			answer.push(temp);
-			words[randomIndex] = "_______";
+			words[randomIndex] = " _______ ";
 			const modifiedLine = words.join(" ");
 			arr.push(modifiedLine);
 		}
@@ -324,22 +325,21 @@ function generateFillInTheBlank() {
 function generateTrueOrFalse() {
     let newArr = generateFillInTheBlank();
     for (let i=0; i<newArr.length; i++) {
-		let questionAddition = "True or False: \n" + newArr[i] + "=" + answer[i];
-		let currQuestion = new Question(i, questionAddition, newArr[i], [" True ", " False ", " IDK "], answer[i]);
+		let questionAddition = " True or False: " + newArr[i] + " = " + answer[i];
+		let currQuestion = new Question(i, "True or False", questionAddition, [" True ", " False ", " IDK "], answer[i]);
 		questionBank.push(currQuestion);
 	}
 }
 
 function generateMultipleChoice() {
     let newArr = generateFillInTheBlank();
-	
     for (let i=0; i<newArr.length; i++) {
         let curAnswer = answer[i];
         option1 = answer[Math.floor(Math.random() * answer.length)];
         option2 = answer[Math.floor(Math.random() * answer.length)];
         option3 = answer[Math.floor(Math.random() * answer.length)];
-        let questionAddition = "Choose the correct answer: " + '\\n' + newArr[i];
-        let currQuestion = new Question(i, questionAddition, newArr[i], [curAnswer, option1, option2, option3], answer[i]);
+        let questionAddition = " Choose the correct answer: " + newArr[i];
+        let currQuestion = new Question(i, "Multiple Choice", questionAddition, [curAnswer, option1, option2, option3], answer[i]);
         questionBank.push(currQuestion);
     }
 	myObj.questionBank = questionBank;
