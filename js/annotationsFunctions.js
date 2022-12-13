@@ -150,6 +150,9 @@ function strToIntArr(str){
 	let noWhiteSpace = str.replace(/\s+/g, '');
 	let arrV1 = noWhiteSpace.split(",");
 	let arrV2 = arrV1.filter(Number);
+	if (arrV1.includes('0')) {
+		arrV2.push('0');
+	}
 	var arrV3 = arrV2.filter(uniqueElements);
 	var arr = [];
     let len = arrV3.length;
