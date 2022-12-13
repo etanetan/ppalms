@@ -35,8 +35,9 @@
 		</h3>
 		<h1>Annotations Page</h1>
 
-		<section class="container">
-		<div id="toolContents">
+		<div class="split right">
+			<div class="centered" id="toolContents">
+
 		<input type="text" id="relatedLines" placeholder="i.e. 0, 4, 6, 7">
 		<h2><button class="btn btn-primary btn-lg" id="groupLinesButton" onclick="addRelatedLines()">Group Lines</button></h2><br>
 
@@ -52,8 +53,11 @@
 		<h2><button class="btn btn-primary btn-lg" id="cleanButton" onclick="cleanEmptyContents()">Remove Empty Lines</button></h2><br>
 		<h2><button class="btn btn-primary btn-lg" id="resetButton" onclick="resetSelections(true)">Reset Selections</button></h2>
 	</div>
-		<div id="displayContents"></div>
+	</div>
+		<div class="split left">
+			<div class="centered" id="displayContents">
+			</div>
+		</div>
 
-	</section>
 	</body>
 </html>

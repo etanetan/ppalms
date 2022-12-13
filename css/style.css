@@ -6,33 +6,33 @@
 	width: 30%;
 	gap: 8px;
 }
+/* Split the screen in half */
 .split {
 	height: 100%;
 	width: 50%;
 	position: fixed;
 	z-index: 1;
-	top: 0;
+	/* top: 0; */
 	overflow-x: hidden;
 	padding-top: 20px;
-}
-
-/* Control the left side */
-.left {
-	left: 0;
-}
+  }
+  
+  /* Control the left side */
+  .left {
+	left: 5%;
+  }
   
   /* Control the right side */
-.right {
-	right: 100%;
-	padding: 50px;
-}
-.centered {
+  .right {
+	right: 10%;
+  }
+/* .centered {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
-  }
+  } */
 
 /* Using an ID selector */
 #backButton.btn-secondary {
@@ -64,6 +64,9 @@
 	align-items: baseline;
 	width: 30%;
 	gap: 8px;
+
+	position:relative;
+	float:left;
   }
   
   #toolContents{
@@ -74,5 +77,5 @@
 	width: 50%;
 	float: right;
 	height: 100%;
-	z-index: 1010101010
+	z-index: 1010101010;
   }
