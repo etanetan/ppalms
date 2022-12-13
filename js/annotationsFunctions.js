@@ -305,38 +305,9 @@ function removeComments(){
 // console.log(JSON.stringify(myObj));
 
 function generateFillInTheBlank() {
-	// loop through each line and generate a question for each line
-	for (let i=0; i<myObj.linesData.length; i++) {
-		// 
-	}
-}
-
-function generateMultipleChoice() {
-	// loop through each line and generate a question for each line
-	for (let i=0; i<myObj.linesData.length; i++) {
-		// 
-	}
-}
-
-function generateTrueOrFalse() {
-	// loop through each line and generate a question for each line
-	for (let i=0; i<myObj.linesData.length; i++) {
-		// 
-	}
-}
-
-function setExportMethod(){
-	myObj.exportMethod = document.getElementById("export").value;
-	console.log("Export method: " + myObj.exportMethod);
-}
-
-function generateFillInTheBlank() {
     // loop through each line and generate a question for each line
     for (let i=0; i<myObj.linesData.length; i++) {
-		// errors out here: what is innerwidth?
-		console.log(innerwidth);
-		console.log(myObj[i].linesData[innerwidth]);
-        words = myObj[i].linesData[innerWidth].contents.split(" "); // added ".contents" to line
+        words = myObj.linesData[i].contents.split(" "); // added ".contents" to line
         const randomIndex = Math.floor(Math.random() * words.length);
         words[randomIndex] = "_______";
         const modifiedLine = words.join(" ");
@@ -358,15 +329,20 @@ function generateTrueOrFalse() {
 
 function generateMultipleChoice() {
     let newArr = generateFillInTheBlank();
+	
     for (let i=0; i<newArr.length; i++) {
-        answer = answer[i];
+        let curAnswer = answer[i];
         option1 = answer[Math.floor(Math.random() * answer.length)];
         option2 = answer[Math.floor(Math.random() * answer.length)];
         option3 = answer[Math.floor(Math.random() * answer.length)];
-        let questionAddition = "Choose the correct answer:" + newArr[i];
-        let currQuestion = new Question(i, questionAddition, newArr[i], [answer, option1, option2, option3], answer);
+        let questionAddition = "Choose the correct answer: " + newArr[i];
+        let currQuestion = new Question(i, questionAddition, newArr[i], [curAnswer, answer[option1], answer[option2], answer[option3]], answer[i]);
         questionBank.push(currQuestion);
     }
 	myObj.questionBank = questionBank;
 }
 
+function setExportMethod(){
+	myObj.exportMethod = document.getElementById("export").value;
+	console.log("Export method: " + myObj.exportMethod);
+}
