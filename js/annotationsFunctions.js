@@ -1,5 +1,4 @@
 // represents a linesData entry
-// TODO: update line to fit new JSON format
 class Line {
 	// constructor to set id and contents for line
 	constructor(id, contents) {
@@ -13,29 +12,30 @@ class Line {
 	fillInTheBlank;
     multChoice;
 };
-// class to store fill in the blank questions
-class fillInTheBlank {
-	constructor(contents, missingItem) {
-		this.contents = contents;
-		this.missingItem = missingItem;
-	}
-};
-// class to store multiple choice questions
-class multChoice {
-	constructor(prompt, a, b, c, d) {
-		this.prompt = prompt;
-		this.a = a;
-		this.b = b;
-		this.c = c;
-		this.d = d;
-	}
-};
+// represents a single question, created using the data in a Line class
+class Question {
+    constructor(id, type, question, options, answer) {
+        this.id = id;
+        this.type = type; 
+        this.question = question;
+        this.options = options; 
+        this.answer = answer;
+    }
+  }
+
+// array of question prompts
+let arr = [];
+// array of question answers
+let answer = [];
+// array of complete questions
+let questionBank = [];
 
 // main object for holding the problem type, export method, and data
 // on all of the lines in the source file
-let myObj = {"exportMethod": null, "linesData": [] };
+let myObj = {"exportMethod": null, "linesData": [], "questionBank":[]};
+
 // copy object used for resetting the annotations on the lines
-let copyObj = {"exportMethod": null, "linesData": [] };
+let copyObj = {"exportMethod": null, "linesData": [], "questionBank":[]};
 
 function logJSON() {
 	// log the json
@@ -329,52 +329,44 @@ function setExportMethod(){
 	myObj.exportMethod = document.getElementById("export").value;
 	console.log("Export method: " + myObj.exportMethod);
 }
-// class Question {
-//     constructor(id, type, question, options, answer) {
-//         this.id = id;
-//         this.type = type; 
-//         this.question = question;
-//         this.options = options; 
-//         this.answer = answer;
-//     }
-//   }
 
-// let arr = [];
-// let answer = [];
-// let questionBank = [];
+function generateFillInTheBlank() {
+    // loop through each line and generate a question for each line
+    for (let i=0; i<myObj.linesData.length; i++) {
+		// errors out here: what is innerwidth?
+		console.log(innerwidth);
+		console.log(myObj[i].linesData[innerwidth]);
+        words = myObj[i].linesData[innerWidth].contents.split(" "); // added ".contents" to line
+        const randomIndex = Math.floor(Math.random() * words.length);
+        words[randomIndex] = "_______";
+        const modifiedLine = words.join(" ");
+        arr.push(modifiedLine);
+        answer.push(words[randomIndex]);
+    }
+	console.log(arr);
+    return arr;
+}
 
-// function generateFillInTheBlank() {
-//     // loop through each line and generate a question for each line
-//     for (let i=0; i<myObj.linesDate.length; i++) {
-//         words = myObj[i].linesData[innerWidth].split(" ");
-//         const randomIndex = Math.floor(Math.random() * words.length);
-//         words[randomIndex] = "_______";
-//         const modifiedLine = words.join(" ");
-//         arr.push(modifiedLine);
-//         answer.push(words[randomIndex]);
-//     }
-//     return arr;
-// }
+function generateTrueOrFalse() {
+    let newArr = generateFillInTheBlank();
+    for (let i=0; i<newArr.length; i++) {
+        let questionAddition = "True or False:" + newArr[i] + "=" + answer[i];
+        let currQuestion = new Question(i, questionAddition, newArr[i], ["True", "False", "IDK"], answer[i]);
+        questionBank.push(currQuestion);
+    }
+}
 
-// function generateTrueOrFalse() {
-//     let newArr = generateFillInTheBlank();
-//     for (let i=0; i<newArr.length; i++) {
-//         let questionAddition = "True or False:" + newArr[i] + "=" + answer[i];
-//         let currQuestion = new Question(i, questionAddition, newArr[i], ["True", "False", "IDK"], answer[i]);
-//         questionBank.push(currQuestion);
-
-//     }
-// }
-// function generateMultipleChoice() {
-//     let newArr = generateFillInTheBlank();
-//     for (let i=0; i<newArr.length; i++) {
-//         answer = answer[i];
-//         option1 = answer[Math.floor(Math.random() * answer.length)];
-//         option2 = answer[Math.floor(Math.random() * answer.length)];
-//         option3 = answer[Math.floor(Math.random() * answer.length)];
-//         let questionAddition = "Choose the correct answer:" + newArr[i];
-//         let currQuestion = new Question(i, questionAddition, newArr[i], [answer, option1, option2, option3], answer);
-//         questionBank.push(currQuestion);
-//     }
-// }
+function generateMultipleChoice() {
+    let newArr = generateFillInTheBlank();
+    for (let i=0; i<newArr.length; i++) {
+        answer = answer[i];
+        option1 = answer[Math.floor(Math.random() * answer.length)];
+        option2 = answer[Math.floor(Math.random() * answer.length)];
+        option3 = answer[Math.floor(Math.random() * answer.length)];
+        let questionAddition = "Choose the correct answer:" + newArr[i];
+        let currQuestion = new Question(i, questionAddition, newArr[i], [answer, option1, option2, option3], answer);
+        questionBank.push(currQuestion);
+    }
+	myObj.questionBank = questionBank;
+}
 
