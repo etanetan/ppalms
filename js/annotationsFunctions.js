@@ -308,43 +308,50 @@ function removeComments(){
 // cleanEmptyContents();
 // console.log(JSON.stringify(myObj));
 
+//this function creates a fill in the blank for all the lines
 function generateFillInTheBlank() {
     // loop through each line and generate a question for each line
     for (let i=0; i<myObj.linesData.length; i++) {
 		if(myObj.linesData[i].included == true){
 			words = myObj.linesData[i].contents.split(" "); // added ".contents" to line
-			const randomIndex = Math.floor(Math.random() * words.length);
-			let temp = words[randomIndex]
-			answer.push(temp);
-			words[randomIndex] = " _______ ";
-			const modifiedLine = words.join(" ");
-			arr.push(modifiedLine);
+			const randomIndex = Math.floor(Math.random() * words.length); //picks a random index in the line
+			let temp = words[randomIndex] //makes the random index the answer for the line
+			answer.push(temp); //answer is added the answer array
+			words[randomIndex] = " _______ "; //replaces the answer with a blank space
+			const modifiedLine = words.join(" "); //rejoins all the words 
+			arr.push(modifiedLine); //pushes the modified line to an array
 		}
 	}
 	console.log(arr);
     return arr;
 }
 
+//this fucntion generates true or false questions for each line
 function generateTrueOrFalse() {
-    let newArr = generateFillInTheBlank();
+    let newArr = generateFillInTheBlank(); //gets the array of all the fill in the blank lines
     for (let i=0; i<newArr.length; i++) {
+		//add the true or false questions to each line in the array
 		let questionAddition = " True or False: " + newArr[i] + " = " + answer[i];
+		//creates an instance of the Question class to make a true or false question 
 		let currQuestion = new Question(i, "True or False", questionAddition, [" True ", " False ", " IDK "], answer[i]);
-		questionBank.push(currQuestion);
+		questionBank.push(currQuestion); //question objects get added to the questions bank
 	}
 }
 
+//this fucntion generates multiple choice questions for each line
 function generateMultipleChoice() {
     let newArr = generateFillInTheBlank();
     for (let i=0; i<newArr.length; i++) {
         let curAnswer = answer[i];
+		//generates a random index to for each option for the answer
         option1 = answer[Math.floor(Math.random() * answer.length)];
         option2 = answer[Math.floor(Math.random() * answer.length)];
         option3 = answer[Math.floor(Math.random() * answer.length)];
         let questionAddition = " Choose the correct answer: " + newArr[i];
+		//creates an instance of the Question class to make a multiple choice question 
         let currQuestion = new Question(i, "Multiple Choice", questionAddition, [curAnswer, option1, option2, option3], answer[i]);
-        questionBank.push(currQuestion);
-    }
+        questionBank.push(currQuestion); //question objects get added to the questions bank
+	}
 	myObj.questionBank = questionBank;
 }
 
