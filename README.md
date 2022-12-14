@@ -9,7 +9,6 @@ The Login page is not functional but is our intention to connect a database to s
 <h2>To Run on your own Machine:</h2>
 <p>Download code, open index.html in your desired browser, login, upload file, annotate file, select export destination -> JSON output for generated questions has now been created & displayed</p>
 
-<br>
 
 <h3>Unit Testing</h3>
 Our testing is done by several console.log statements in JavaScript to test the output against the correct output based on an example file as input (example.py). 
