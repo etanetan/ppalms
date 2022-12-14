@@ -1,4 +1,4 @@
-# ppalms
+# PPALMS Version 0.2
 
 <h1>Click on the Live Demo below</h1>
 <p>You will be brought to our login page. From there, you can upload a file, annotate it, then view it as a JSON.
