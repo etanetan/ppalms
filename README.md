@@ -20,4 +20,3 @@ Our testing is done by several console.log statements in JavaScript to test the 
 “LinesData”: [{”Included”:bool, “ID”:int, “LineContents”:””, "relatedLineIDs":int[]}, ...] <br>
 "questionBank":[ {"id":int, "type":"", "question":"", "options":[], "answer":""}, ...] <br>
 ]<br>
- 
