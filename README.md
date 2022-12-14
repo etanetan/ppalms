@@ -7,7 +7,7 @@ The Login page is not functional but is our intention to connect a database to s
 <a href="http://etanetan.github.io/ppalms/">Live Demo</a>
 
 <h2>To Run on your own Machine:</h2>
-<p>Open index.html in browser, login, upload file, annotate file, select export destination -> JSON output for generated questions has now been created & displayed</p>
+<p>Download code, open index.html in browser, login, upload file, annotate file, select export destination -> JSON output for generated questions has now been created & displayed</p>
 
 <br>
 
