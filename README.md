@@ -15,8 +15,7 @@ The Login page is not functional but is our intention to connect a database to s
 Our testing is done by several console.log statements in JavaScript to test the output against the correct output based on an example file as input (example.py). 
 
 
-
-<h3>JSON Object Data Format: </h3> <br>
+<h3>JSON Object Data Format: </h3>
 <h5>myObj = [</h5>
 “exportMethod”:””, <br>
 “LinesData”: [{”Included”:bool, “ID”:int, “LineContents”:””, "relatedLineIDs":int[]}, ...] <br>
