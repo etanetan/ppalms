@@ -20,3 +20,6 @@ Our testing is done by several console.log statements in JavaScript to test the 
 “LinesData”: [{”Included”:bool, “ID”:int, “LineContents”:””, "relatedLineIDs":int[]}, ...] <br>
 "questionBank":[ {"id":int, "type":"", "question":"", "options":[], "answer":""}, ...] <br>
 ]<br>
+
+<h3>Acceptable File Extensions: </h3>
+.txt, .doc, .docx, .html, .css, .js, .java, .c, .cc, .cpp, .py, .xhtml, .php, .sql, .h, .swift, .sh, .vb, .md
