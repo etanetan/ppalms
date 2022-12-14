@@ -16,8 +16,8 @@ Our testing is done by several console.log statements in JavaScript to test the 
 
 
 
-JSON Object Data Format:<br>
-<h3>myObj = [</h3>
+<h3>JSON Object Data Format: </h3> <br>
+<h5>myObj = [</h5>
 “exportMethod”:””, <br>
 “LinesData”: [{”Included”:bool, “ID”:int, “LineContents”:””, "relatedLineIDs":int[]}, ...] <br>
 "questionBank":[ {"id":int, "type":"", "question":"", "options":[], "answer":""}, ...] <br>
